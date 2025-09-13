@@ -1,11 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using UPXV.Models;
 using UPXV.Services;
 
 namespace UPXV_API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class UnitController (UnitService unitService) : ControllerBase
+public class UnitController : ControllerBase<Unit>
 {
-   private UnitService _unitService = unitService;
+   private new readonly UnitService _service;
+
+   public UnitController (UnitService service) : base (service)
+   {
+      _service = service;
+   }
 }

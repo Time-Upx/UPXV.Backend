@@ -12,6 +12,10 @@ public class PatrimonyMapping : IMapping<Patrimony>
 
       builder.HasOne(c => c.Status)
          .WithMany()
-         .HasForeignKey(c => c.StatusId);
+         .HasForeignKey(c => c.StatusNid);
+
+      builder.HasOne(c => c.Item)
+         .WithMany()
+         .HasForeignKey(c => c.ItemNid);
    }
 }

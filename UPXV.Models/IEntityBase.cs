@@ -1,6 +1,6 @@
 ﻿namespace UPXV.Models;
 
-public interface IBaseModel
+public interface IEntityBase
 {
    public int Nid { get; set; }
    public string Tid { get; set; }

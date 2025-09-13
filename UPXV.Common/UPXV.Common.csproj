@@ -7,9 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UPCV.Validation\UPCV.Validation.csproj" />
-    <ProjectReference Include="..\UPXV.Data\UPXV.Data.csproj" />
-    <ProjectReference Include="..\UPXV.DTOs\UPXV.DTOs.csproj" />
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.6.7" />
   </ItemGroup>
 
 </Project>

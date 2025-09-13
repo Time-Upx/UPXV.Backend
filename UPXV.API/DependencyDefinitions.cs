@@ -21,7 +21,7 @@ public static class DependencyDefinitions
 
       services.AddScoped<TagService>();
       services.AddScoped<TagRepository>();
-         
+
       services.AddScoped<UnitService>();
       services.AddScoped<UnitRepository>();
 

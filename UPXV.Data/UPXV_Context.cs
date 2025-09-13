@@ -16,6 +16,7 @@ public class UPXV_Context : DbContext
    protected override void OnModelCreating (ModelBuilder builder)
    {
       builder.AutoIncrementColumns();
+      builder.ApplyConfiguration(new ItemMapping());
       builder.ApplyConfiguration(new ConsumableMapping());
       builder.ApplyConfiguration(new PatrimonyMapping());
       builder.ApplyConfiguration(new StatusMapping());

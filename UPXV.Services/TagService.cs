@@ -1,5 +1,9 @@
-﻿namespace UPXV.Services;
+﻿using UPXV.Data.Repositories;
+using UPXV.Models;
 
-public class TagService
+namespace UPXV.Services;
+
+public class TagService (TagRepository repository) : ServiceBase<Tag>(repository)
 {
+   protected new TagRepository _repository => (TagRepository) _repository;
 }

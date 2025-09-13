@@ -1,11 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using UPXV.Models;
 using UPXV.Services;
 
 namespace UPXV_API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class ConsumableController (ConsumableService consumableService) : ControllerBase
+public class ConsumableController : ControllerBase<Consumable>
 {
-   private ConsumableService _consumableService = consumableService;
+   private new readonly ConsumableService _service;
+
+   public ConsumableController (ConsumableService service) : base (service)
+   {
+      _service = service;
+   }
 }

@@ -1,6 +1,6 @@
 ﻿namespace UPXV.Models;
 
-public class Status : IBaseModel
+public class Status : IEntityBase
 {
    public int Nid { get; set; }
    public required string Tid { get; set; }

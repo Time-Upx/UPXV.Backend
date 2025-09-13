@@ -12,6 +12,10 @@ public class ConsumableMapping : IMapping<Consumable>
 
       builder.HasOne(c => c.Unit)
          .WithMany()
-         .HasForeignKey(c => c.UnitId);
+         .HasForeignKey(c => c.UnitNid);
+
+      builder.HasOne(c => c.Item)
+         .WithMany()
+         .HasForeignKey(c => c.ItemNid);
    }
 }

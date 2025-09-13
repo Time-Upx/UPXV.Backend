@@ -1,10 +1,11 @@
-﻿using UPXV.Data;
+﻿using FluentValidation;
 using UPXV.Data.Repositories;
 using UPXV.Models;
 
 namespace UPXV.Services;
 
-public class UnitService(RepositoryBase<Unit> repository) : ServiceBase<Unit> (repository)
+public class UnitService(UnitRepository repository, IValidator<Unit> validator) 
+   : ServiceBase<Unit> (repository, validator)
 {
-   protected UnitRepository Repository => (UnitRepository) _repository;
+   protected new UnitRepository _repository => (UnitRepository) _repository;
 }

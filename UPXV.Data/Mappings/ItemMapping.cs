@@ -12,9 +12,5 @@ public class ItemMapping : IMapping<Item>
 
       builder.HasMany(i => i.Tags)
          .WithMany();
-
-      builder.HasDiscriminator<string>("item_type")
-         .HasValue<Consumable>("consumable_item")
-         .HasValue<Patrimony>("patrimony_item");
    }
 }

@@ -1,5 +1,9 @@
-﻿namespace UPXV.Services;
+﻿using UPXV.Data.Repositories;
+using UPXV.Models;
 
-public class StatusService
+namespace UPXV.Services;
+
+public class StatusService (StatusRepository repository) : ServiceBase<Status>(repository)
 {
+   protected new StatusRepository _repository => (StatusRepository) _repository;
 }
