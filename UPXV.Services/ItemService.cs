@@ -1,9 +1,15 @@
-﻿using UPXV.Data.Repositories;
+﻿using FluentValidation;
+using UPXV.Data;
+using UPXV.Data.Repositories;
 using UPXV.Models;
 
 namespace UPXV.Services;
 
-public class ItemService (ItemRepository repository) : ServiceBase<Item>(repository)
+public class ItemService : ServiceBase<Item>
 {
-   protected new ItemRepository _repository => (ItemRepository) _repository;
+   private ItemRepository _repository => (ItemRepository) _repositoryBase;
+   public ItemService (ItemRepository repository, IValidator<Item> validator) : base(repository, validator)
+   {
+   }
+
 }

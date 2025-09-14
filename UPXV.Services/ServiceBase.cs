@@ -4,18 +4,19 @@ using UPXV.Data;
 using UPXV.DTOs;
 using UPXV.Models;
 using UPXV.Services.Exceptions;
+using UPXV_API;
 using ValidationException = UPXV.Services.Exceptions.ValidationException;
 
 namespace UPXV.Services;
 
 public abstract class ServiceBase<TEntity> where TEntity : class, IEntityBase
 {
-   protected RepositoryBase<TEntity> _repository;
+   protected RepositoryBase<TEntity> _repositoryBase;
    protected IValidator<TEntity> _validator;
 
    public ServiceBase (RepositoryBase<TEntity> repository, IValidator<TEntity> validator) 
    {
-      _repository = repository;
+      _repositoryBase = repository;
       _validator = validator;
    }
 
@@ -34,8 +35,8 @@ public abstract class ServiceBase<TEntity> where TEntity : class, IEntityBase
       if (!result.IsValid)
          return new ValidationException(result.Errors);
 
-      _repository.Create (ref entity);
-      _repository.Save();
+      _repositoryBase.Create (ref entity);
+      _repositoryBase.Save();
       return (TDetailDTO) new TDetailDTO().From(entity);
    }
 
@@ -43,29 +44,45 @@ public abstract class ServiceBase<TEntity> where TEntity : class, IEntityBase
       (IUpdateDTO<TEntity> dto, IValidator<IUpdateDTO<TEntity>>? dtoValidator = default)
       where TDetailDTO : IDetailDTO<TEntity>, new()
    {
-      TEntity? entity = _repository.FindByNid(dto.Nid);
+      TEntity? entity = _repositoryBase.FindByNid(dto.Nid);
       if (entity is null)
       {
          return new EntityNotFoundException<TEntity>(dto.Nid);
       } 
-      _repository.Update(ref entity);
-      _repository.Save();
+      _repositoryBase.Update(ref entity);
+      _repositoryBase.Save();
       return (TDetailDTO) new TDetailDTO().From(entity);
    }
 
-   public virtual Result<int, Exception> Delete (QueryDTO<TEntity> queryDto)
+   public virtual Result<TDetailDTO, Exception> Delete <TDetailDTO>(int nid)
+      where TDetailDTO : IDetailDTO<TEntity>, new()
    {
-      Query<TEntity> query = queryDto.ToQuery();
-      ICollection<TEntity> entities = _repository.ReadQuery(query);
-      _repository.DeleteMultiple(entities);
-      return _repository.Save();
+      TEntity? entity = _repositoryBase.FindByNid(nid);
+      if (entity is null)
+      {
+         return new EntityNotFoundException<TEntity>(nid);
+      }
+      _repositoryBase.Delete(ref entity);
+      _repositoryBase.Save();
+      return (TDetailDTO) new TDetailDTO().From(entity);
    }
 
-   public virtual ICollection<TListDTO> List<TListDTO> (QueryDTO<TEntity> queryDto)
+   public virtual IPage<TListDTO> List<TListDTO> (PageDTO<TEntity> dto)
       where TListDTO : IListDTO<TEntity>, new()
    {
-      Query<TEntity> query = queryDto.ToQuery();
-      ICollection<TEntity> entities = _repository.ReadQuery(query);
-      return entities.Select(e => (TListDTO) new TListDTO().From(e)).ToList();
+      Query<TEntity> query = Query<TEntity>.From(dto);
+      ICollection<TEntity> entities = _repositoryBase.ReadQuery(query);
+      return entities.Select(e => (TListDTO) new TListDTO().From(e)).ToPage(dto.PageSize);
+   }
+
+   public virtual Result<TDetailDTO, Exception> Get<TDetailDTO> (int nid)
+      where TDetailDTO : IDetailDTO<TEntity>, new()
+   {
+      TEntity? entity = _repositoryBase.FindByNid(nid);
+      if (entity is null)
+      {
+         return new EntityNotFoundException<TEntity>(nid);
+      }
+      return (TDetailDTO) new TDetailDTO().From(entity);
    }
 }

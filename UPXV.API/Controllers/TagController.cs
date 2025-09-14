@@ -8,10 +8,9 @@ namespace UPXV_API.Controllers;
 [Route("[controller]")]
 public class TagController : ControllerBase<Tag>
 {
-   private new readonly TagService _service;
+   private TagService _service => (TagService) _serviceBase;
 
    public TagController (TagService service) : base(service) 
    { 
-      _service = service;
    }
 }

@@ -8,10 +8,9 @@ namespace UPXV_API.Controllers;
 [Route("[controller]")]
 public class UnitController : ControllerBase<Unit>
 {
-   private new readonly UnitService _service;
+   private UnitService _service => (UnitService) _serviceBase;
 
    public UnitController (UnitService service) : base (service)
    {
-      _service = service;
    }
 }

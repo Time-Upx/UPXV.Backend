@@ -1,11 +1,14 @@
 ﻿using FluentValidation;
+using UPXV.Data;
 using UPXV.Data.Repositories;
 using UPXV.Models;
 
 namespace UPXV.Services;
 
-public class ConsumableService (ConsumableRepository repository, IValidator<Consumable> validator) 
-   : ServiceBase<Consumable>(repository, validator)
+public class ConsumableService : ServiceBase<Consumable>
 {
-   protected new ConsumableRepository _repository => (ConsumableRepository) _repository;
+   private ConsumableRepository _repository => (ConsumableRepository) _repositoryBase;
+   public ConsumableService (RepositoryBase<Consumable> repository, IValidator<Consumable> validator) : base(repository, validator)
+   {
+   }
 }

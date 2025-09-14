@@ -1,18 +1,27 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using UPXV.Models;
+using UPXV_API;
 
 namespace UPXV.Data;
 
 public record Query<TEntity> where TEntity : class, IEntityBase
 {
-   public int _skip;
-   public int _take;
-   public bool _asNoTracking;
-   public readonly ICollection<Expression<Func<TEntity, bool>>> _filters = [];
-   public readonly ICollection<Expression<Func<TEntity, object>>> _includes = [];
-   public readonly ICollection<(Expression<Func<TEntity, object>> Expression, bool Descending)> _sortings = [];
+   private int _skip;
+   private int _take;
+   private bool _asNoTracking;
+   private readonly ICollection<Expression<Func<TEntity, bool>>> _filters = [];
+   private readonly ICollection<Expression<Func<TEntity, object>>> _includes = [];
+   private readonly ICollection<(Expression<Func<TEntity, object>> Expression, bool Descending)> _sortings = [];
 
+   public static Query<T> From<T> (PageDTO<T> page) where T : class, IEntityBase
+   {
+      return new Query<T>
+      {
+         _skip = page.CurrentPage * page.PageSize,
+         _take = page.PageSize,
+      };
+   }
    public Query<TEntity> Skip (int skip)
    {
       _skip = skip;

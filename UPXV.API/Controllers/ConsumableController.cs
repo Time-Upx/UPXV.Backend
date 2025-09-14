@@ -8,10 +8,9 @@ namespace UPXV_API.Controllers;
 [Route("[controller]")]
 public class ConsumableController : ControllerBase<Consumable>
 {
-   private new readonly ConsumableService _service;
+   private ConsumableService _service => (ConsumableService) _serviceBase;
 
    public ConsumableController (ConsumableService service) : base (service)
    {
-      _service = service;
    }
 }

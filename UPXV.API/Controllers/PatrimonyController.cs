@@ -8,10 +8,9 @@ namespace UPXV_API.Controllers;
 [Route("[controller]")]
 public class PatrimonyController : ControllerBase<Patrimony>
 {
-   private new readonly PatrimonyService _service;
+   private PatrimonyService _service => (PatrimonyService) _serviceBase;
 
    public PatrimonyController (PatrimonyService service) : base (service)
    {
-      _service = service;
    }
 }

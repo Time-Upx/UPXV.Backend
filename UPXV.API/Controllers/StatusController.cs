@@ -8,10 +8,9 @@ namespace UPXV_API.Controllers;
 [Route("[controller]")]
 public class StatusController : ControllerBase<Status>
 {
-   private new readonly StatusService _service;
+   private StatusService _service => (StatusService) _serviceBase;
 
    public StatusController (StatusService service) : base (service)
    {
-      _service = service;
    }
 }

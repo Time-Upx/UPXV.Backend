@@ -2,7 +2,7 @@
 
 namespace UPXV.Data;
 
-public class RepositoryBase<TEntity> where TEntity : class, IEntityBase
+public abstract class RepositoryBase<TEntity> where TEntity : class, IEntityBase
 {
    protected UPXV_Context _context;
 

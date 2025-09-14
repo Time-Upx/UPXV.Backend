@@ -1,9 +1,14 @@
-﻿using UPXV.Data.Repositories;
+﻿using FluentValidation;
+using UPXV.Data;
+using UPXV.Data.Repositories;
 using UPXV.Models;
 
 namespace UPXV.Services;
 
-public class PatrimonyService (PatrimonyRepository repository) : ServiceBase<Patrimony>(repository)
+public class PatrimonyService : ServiceBase<Patrimony>
 {
-   protected new PatrimonyRepository _repository => (PatrimonyRepository) _repository;
+   private PatrimonyRepository _repository => (PatrimonyRepository) _repositoryBase;
+   public PatrimonyService (PatrimonyRepository repository, IValidator<Patrimony> validator) : base(repository, validator)
+   {
+   }
 }
