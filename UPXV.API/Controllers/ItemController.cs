@@ -14,5 +14,5 @@ public sealed class ItemController : ControllerBase
    }
 
    [HttpGet]
-   public IActionResult List (int page, int size) => Ok(_service.List(page, size));
+   public IActionResult List (int page = 0, int size = 5) => Ok(_service.List(page, size));
 }

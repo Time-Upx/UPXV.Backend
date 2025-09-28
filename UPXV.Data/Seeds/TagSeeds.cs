@@ -4,24 +4,36 @@ namespace UPXV.Data.Seeds;
 
 public static class TagSeeds
 {
-   public static readonly Tag[] Data = [Tag1!, Tag2!, Tag3!, Tag4!];
+   public static Tag[] Data => [Laticinio, Cobertura, Refrigerado, Equipamento, Mobilia];
 
-   public static readonly Tag Tag1 = new()
+   public static readonly Tag Laticinio = new()
    {
-      Tid = "Tag1",
-      Description = "Tag1 Description"
+      Nid = 1,
+      Tid = "Laticínio",
+      Description = "Contém leite ou produtos à base de leite."
    };
-   public static readonly Tag Tag2 = new()
+   public static readonly Tag Cobertura = new()
    {
-      Tid = "Tag2",
+      Nid = 2,
+      Tid = "Cobertura",
+      Description = "Usado como cobertura para sorvete."
    };
-   public static readonly Tag Tag3 = new()
+   public static readonly Tag Refrigerado = new()
    {
-      Tid = "Tag3",
-      Description = "Tag3 Description"
+      Nid = 3,
+      Tid = "Refrigerado",
+      Description = "Requer armazenamento refrigerado."
    };
-   public static readonly Tag Tag4 = new()
+   public static readonly Tag Equipamento = new()
    {
-      Tid = "Tag1",
+      Nid = 4,
+      Tid = "Equipamento",
+      Description = "Ativos mecânicos ou elétricos da loja."
+   };
+   public static readonly Tag Mobilia = new()
+   {
+      Nid = 5,
+      Tid = "Mobília",
+      Description = "Mobília da loja, como mesas e cadeiras."
    };
 }

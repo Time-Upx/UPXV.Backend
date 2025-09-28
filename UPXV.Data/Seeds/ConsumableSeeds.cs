@@ -4,29 +4,34 @@ namespace UPXV.Data.Seeds;
 
 public static class ConsumableSeeds
 {
-   public static readonly Consumable[] Data = [Consumable1!, Consumable2!, Consumable3!, Consumable4!];
+   public static Consumable[] Data => [BaseChocolate, GranuladoColorido, CasquinhasWaffle];
 
-   public static readonly Consumable Consumable1 = new()
+   public static readonly Consumable BaseChocolate = new()
    {
-      Tid = "Consumível 1",
+      Nid = 1,
+      Tid = "Base de Sorvete de Chocolate",
+      Description = "Base pré-misturada e rica de chocolate para fazer sorvete.",
+      Quantity = 50,
+      UnitNid = UnitSeeds.Litro.Nid,
+      Tags = [TagSeeds.Laticinio, TagSeeds.Refrigerado]
+   };
+
+   public static readonly Consumable GranuladoColorido = new()
+   {
+      Nid = 2,
+      Tid = "Granulado Colorido",
+      Description = "Granulado de açúcar colorido para coberturas.",
       Quantity = 5,
-      Unit = UnitSeeds.Meters,
+      UnitNid = UnitSeeds.Quilograma.Nid,
+      Tags = [TagSeeds.Cobertura]
    };
-   public static readonly Consumable Consumable2 = new()
-   {
-      Tid = "Consumível 2",
-      Unit = UnitSeeds.SingleUnit,
-   };
-   public static readonly Consumable Consumable3 = new()
-   {
-      Tid = "Consumível 3",
-      Quantity = 1,
-      Unit = UnitSeeds.Kilograms,
 
-   };
-   public static readonly Consumable Consumable4 = new()
+   public static readonly Consumable CasquinhasWaffle = new()
    {
-      Tid = "Consumível 4",
-      Unit = UnitSeeds.Liters,
+      Nid = 3,
+      Tid = "Casquinhas de Waffle",
+      Description = "Caixa com grande quantidade de casquinhas de waffle.",
+      Quantity = 10,
+      UnitNid = UnitSeeds.Caixa.Nid,
    };
 }

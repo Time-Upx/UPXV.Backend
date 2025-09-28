@@ -1,0 +1,967 @@
+{
+   "openapi": "3.0.4",
+   "info": {
+      "title": "UPXV.Api",
+      "version": "1.0"
+   },
+   "paths": {
+      "/Consumable": {
+         "get": {
+            "tags": [
+               "Consumable"
+            ],
+            "parameters": [
+               {
+                  "name": "page",
+                  "in": "query",
+                  "schema": {
+                     "type": "integer",
+                     "format": "int32",
+                     "default": 0
+                  }
+               },
+               {
+                  "name": "size",
+                  "in": "query",
+                  "schema": {
+                     "type": "integer",
+                     "format": "int32",
+                     "default": 5
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         },
+         "post": {
+            "tags": [
+               "Consumable"
+            ],
+            "requestBody": {
+               "content": {
+                  "application/json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/ConsumableCreateDTO"
+                     }
+                  },
+                  "text/json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/ConsumableCreateDTO"
+                     }
+                  },
+                  "application/*+json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/ConsumableCreateDTO"
+                     }
+                  }
+               }
+            },
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         },
+         "put": {
+            "tags": [
+               "Consumable"
+            ],
+            "requestBody": {
+               "content": {
+                  "application/json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/ConsumableUpdateDTO"
+                     }
+                  },
+                  "text/json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/ConsumableUpdateDTO"
+                     }
+                  },
+                  "application/*+json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/ConsumableUpdateDTO"
+                     }
+                  }
+               }
+            },
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         }
+      },
+      "/Consumable/{nid}": {
+         "get": {
+            "tags": [
+               "Consumable"
+            ],
+            "parameters": [
+               {
+                  "name": "nid",
+                  "in": "path",
+                  "required": true,
+                  "schema": {
+                     "type": "integer",
+                     "format": "int32"
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         },
+         "delete": {
+            "tags": [
+               "Consumable"
+            ],
+            "parameters": [
+               {
+                  "name": "nid",
+                  "in": "path",
+                  "required": true,
+                  "schema": {
+                     "type": "integer",
+                     "format": "int32"
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         }
+      },
+      "/Item": {
+         "get": {
+            "tags": [
+               "Item"
+            ],
+            "parameters": [
+               {
+                  "name": "page",
+                  "in": "query",
+                  "schema": {
+                     "type": "integer",
+                     "format": "int32",
+                     "default": 0
+                  }
+               },
+               {
+                  "name": "size",
+                  "in": "query",
+                  "schema": {
+                     "type": "integer",
+                     "format": "int32",
+                     "default": 5
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         }
+      },
+      "/Patrimony": {
+         "get": {
+            "tags": [
+               "Patrimony"
+            ],
+            "parameters": [
+               {
+                  "name": "page",
+                  "in": "query",
+                  "schema": {
+                     "type": "integer",
+                     "format": "int32",
+                     "default": 0
+                  }
+               },
+               {
+                  "name": "size",
+                  "in": "query",
+                  "schema": {
+                     "type": "integer",
+                     "format": "int32",
+                     "default": 5
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         },
+         "post": {
+            "tags": [
+               "Patrimony"
+            ],
+            "requestBody": {
+               "content": {
+                  "application/json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/PatrimonyCreateDTO"
+                     }
+                  },
+                  "text/json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/PatrimonyCreateDTO"
+                     }
+                  },
+                  "application/*+json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/PatrimonyCreateDTO"
+                     }
+                  }
+               }
+            },
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         },
+         "put": {
+            "tags": [
+               "Patrimony"
+            ],
+            "requestBody": {
+               "content": {
+                  "application/json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/PatrimonyUpdateDTO"
+                     }
+                  },
+                  "text/json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/PatrimonyUpdateDTO"
+                     }
+                  },
+                  "application/*+json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/PatrimonyUpdateDTO"
+                     }
+                  }
+               }
+            },
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         }
+      },
+      "/Patrimony/{nid}": {
+         "get": {
+            "tags": [
+               "Patrimony"
+            ],
+            "parameters": [
+               {
+                  "name": "nid",
+                  "in": "path",
+                  "required": true,
+                  "schema": {
+                     "type": "integer",
+                     "format": "int32"
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         },
+         "delete": {
+            "tags": [
+               "Patrimony"
+            ],
+            "parameters": [
+               {
+                  "name": "nid",
+                  "in": "path",
+                  "required": true,
+                  "schema": {
+                     "type": "integer",
+                     "format": "int32"
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         }
+      },
+      "/Status": {
+         "get": {
+            "tags": [
+               "Status"
+            ],
+            "parameters": [
+               {
+                  "name": "page",
+                  "in": "query",
+                  "schema": {
+                     "type": "integer",
+                     "format": "int32",
+                     "default": 0
+                  }
+               },
+               {
+                  "name": "size",
+                  "in": "query",
+                  "schema": {
+                     "type": "integer",
+                     "format": "int32",
+                     "default": 5
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         },
+         "post": {
+            "tags": [
+               "Status"
+            ],
+            "requestBody": {
+               "content": {
+                  "application/json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/StatusCreateDTO"
+                     }
+                  },
+                  "text/json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/StatusCreateDTO"
+                     }
+                  },
+                  "application/*+json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/StatusCreateDTO"
+                     }
+                  }
+               }
+            },
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         },
+         "put": {
+            "tags": [
+               "Status"
+            ],
+            "requestBody": {
+               "content": {
+                  "application/json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/StatusUpdateDTO"
+                     }
+                  },
+                  "text/json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/StatusUpdateDTO"
+                     }
+                  },
+                  "application/*+json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/StatusUpdateDTO"
+                     }
+                  }
+               }
+            },
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         }
+      },
+      "/Status/{nid}": {
+         "get": {
+            "tags": [
+               "Status"
+            ],
+            "parameters": [
+               {
+                  "name": "nid",
+                  "in": "path",
+                  "required": true,
+                  "schema": {
+                     "type": "integer",
+                     "format": "int32"
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         },
+         "delete": {
+            "tags": [
+               "Status"
+            ],
+            "parameters": [
+               {
+                  "name": "nid",
+                  "in": "path",
+                  "required": true,
+                  "schema": {
+                     "type": "integer",
+                     "format": "int32"
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         }
+      },
+      "/Tag": {
+         "get": {
+            "tags": [
+               "Tag"
+            ],
+            "parameters": [
+               {
+                  "name": "page",
+                  "in": "query",
+                  "schema": {
+                     "type": "integer",
+                     "format": "int32",
+                     "default": 0
+                  }
+               },
+               {
+                  "name": "size",
+                  "in": "query",
+                  "schema": {
+                     "type": "integer",
+                     "format": "int32",
+                     "default": 5
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         },
+         "post": {
+            "tags": [
+               "Tag"
+            ],
+            "requestBody": {
+               "content": {
+                  "application/json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/TagCreateDTO"
+                     }
+                  },
+                  "text/json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/TagCreateDTO"
+                     }
+                  },
+                  "application/*+json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/TagCreateDTO"
+                     }
+                  }
+               }
+            },
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         },
+         "put": {
+            "tags": [
+               "Tag"
+            ],
+            "requestBody": {
+               "content": {
+                  "application/json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/TagUpdateDTO"
+                     }
+                  },
+                  "text/json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/TagUpdateDTO"
+                     }
+                  },
+                  "application/*+json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/TagUpdateDTO"
+                     }
+                  }
+               }
+            },
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         }
+      },
+      "/Tag/{nid}": {
+         "get": {
+            "tags": [
+               "Tag"
+            ],
+            "parameters": [
+               {
+                  "name": "nid",
+                  "in": "path",
+                  "required": true,
+                  "schema": {
+                     "type": "integer",
+                     "format": "int32"
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         },
+         "delete": {
+            "tags": [
+               "Tag"
+            ],
+            "parameters": [
+               {
+                  "name": "nid",
+                  "in": "path",
+                  "required": true,
+                  "schema": {
+                     "type": "integer",
+                     "format": "int32"
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         }
+      },
+      "/Unit": {
+         "get": {
+            "tags": [
+               "Unit"
+            ],
+            "parameters": [
+               {
+                  "name": "page",
+                  "in": "query",
+                  "schema": {
+                     "type": "integer",
+                     "format": "int32",
+                     "default": 0
+                  }
+               },
+               {
+                  "name": "size",
+                  "in": "query",
+                  "schema": {
+                     "type": "integer",
+                     "format": "int32",
+                     "default": 5
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         },
+         "post": {
+            "tags": [
+               "Unit"
+            ],
+            "requestBody": {
+               "content": {
+                  "application/json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/UnitCreateDTO"
+                     }
+                  },
+                  "text/json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/UnitCreateDTO"
+                     }
+                  },
+                  "application/*+json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/UnitCreateDTO"
+                     }
+                  }
+               }
+            },
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         },
+         "put": {
+            "tags": [
+               "Unit"
+            ],
+            "requestBody": {
+               "content": {
+                  "application/json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/UnitUpdateDTO"
+                     }
+                  },
+                  "text/json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/UnitUpdateDTO"
+                     }
+                  },
+                  "application/*+json": {
+                     "schema": {
+                        "$ref": "#/components/schemas/UnitUpdateDTO"
+                     }
+                  }
+               }
+            },
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         }
+      },
+      "/Unit/{nid}": {
+         "get": {
+            "tags": [
+               "Unit"
+            ],
+            "parameters": [
+               {
+                  "name": "nid",
+                  "in": "path",
+                  "required": true,
+                  "schema": {
+                     "type": "integer",
+                     "format": "int32"
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         },
+         "delete": {
+            "tags": [
+               "Unit"
+            ],
+            "parameters": [
+               {
+                  "name": "nid",
+                  "in": "path",
+                  "required": true,
+                  "schema": {
+                     "type": "integer",
+                     "format": "int32"
+                  }
+               }
+            ],
+            "responses": {
+               "200": {
+                  "description": "OK"
+               }
+            }
+         }
+      }
+   },
+   "components": {
+      "schemas": {
+         "ConsumableCreateDTO": {
+            "required": [
+               "tid",
+               "unitNid"
+            ],
+            "type": "object",
+            "properties": {
+               "tid": {
+                  "type": "string",
+                  "nullable": true
+               },
+               "unitNid": {
+                  "type": "integer",
+                  "format": "int32"
+               },
+               "quantity": {
+                  "type": "number",
+                  "format": "double"
+               },
+               "description": {
+                  "type": "string",
+                  "nullable": true
+               },
+               "tagNids": {
+                  "type": "array",
+                  "items": {
+                     "type": "integer",
+                     "format": "int32"
+                  },
+                  "nullable": true
+               }
+            },
+            "additionalProperties": false
+         },
+         "ConsumableUpdateDTO": {
+            "required": [
+               "nid"
+            ],
+            "type": "object",
+            "properties": {
+               "nid": {
+                  "type": "integer",
+                  "format": "int32"
+               },
+               "tid": {
+                  "type": "string",
+                  "nullable": true
+               },
+               "description": {
+                  "type": "string",
+                  "nullable": true
+               },
+               "tagNids": {
+                  "type": "array",
+                  "items": {
+                     "type": "integer",
+                     "format": "int32"
+                  },
+                  "nullable": true
+               },
+               "quantity": {
+                  "type": "number",
+                  "format": "double",
+                  "nullable": true
+               },
+               "unitNid": {
+                  "type": "integer",
+                  "format": "int32",
+                  "nullable": true
+               }
+            },
+            "additionalProperties": false
+         },
+         "PatrimonyCreateDTO": {
+            "required": [
+               "tid"
+            ],
+            "type": "object",
+            "properties": {
+               "tid": {
+                  "type": "string",
+                  "nullable": true
+               },
+               "description": {
+                  "type": "string",
+                  "nullable": true
+               },
+               "tagNids": {
+                  "type": "array",
+                  "items": {
+                     "type": "integer",
+                     "format": "int32"
+                  },
+                  "nullable": true
+               },
+               "registeredBy": {
+                  "type": "string",
+                  "nullable": true
+               },
+               "statusNid": {
+                  "type": "integer",
+                  "format": "int32"
+               }
+            },
+            "additionalProperties": false
+         },
+         "PatrimonyUpdateDTO": {
+            "required": [
+               "nid"
+            ],
+            "type": "object",
+            "properties": {
+               "nid": {
+                  "type": "integer",
+                  "format": "int32"
+               },
+               "tid": {
+                  "type": "string",
+                  "nullable": true
+               },
+               "description": {
+                  "type": "string",
+                  "nullable": true
+               },
+               "tagNids": {
+                  "type": "array",
+                  "items": {
+                     "type": "integer",
+                     "format": "int32"
+                  },
+                  "nullable": true
+               },
+               "statusNid": {
+                  "type": "integer",
+                  "format": "int32",
+                  "nullable": true
+               }
+            },
+            "additionalProperties": false
+         },
+         "StatusCreateDTO": {
+            "required": [
+               "tid"
+            ],
+            "type": "object",
+            "properties": {
+               "tid": {
+                  "type": "string",
+                  "nullable": true
+               },
+               "description": {
+                  "type": "string",
+                  "nullable": true
+               }
+            },
+            "additionalProperties": false
+         },
+         "StatusUpdateDTO": {
+            "required": [
+               "nid"
+            ],
+            "type": "object",
+            "properties": {
+               "nid": {
+                  "type": "integer",
+                  "format": "int32"
+               },
+               "tid": {
+                  "type": "string",
+                  "nullable": true
+               },
+               "description": {
+                  "type": "string",
+                  "nullable": true
+               }
+            },
+            "additionalProperties": false
+         },
+         "TagCreateDTO": {
+            "required": [
+               "tid"
+            ],
+            "type": "object",
+            "properties": {
+               "tid": {
+                  "type": "string",
+                  "nullable": true
+               },
+               "description": {
+                  "type": "string",
+                  "nullable": true
+               }
+            },
+            "additionalProperties": false
+         },
+         "TagUpdateDTO": {
+            "required": [
+               "nid"
+            ],
+            "type": "object",
+            "properties": {
+               "nid": {
+                  "type": "integer",
+                  "format": "int32"
+               },
+               "tid": {
+                  "type": "string",
+                  "nullable": true
+               },
+               "description": {
+                  "type": "string",
+                  "nullable": true
+               }
+            },
+            "additionalProperties": false
+         },
+         "UnitCreateDTO": {
+            "required": [
+               "abbreviation",
+               "tid"
+            ],
+            "type": "object",
+            "properties": {
+               "tid": {
+                  "type": "string",
+                  "nullable": true
+               },
+               "abbreviation": {
+                  "type": "string",
+                  "nullable": true
+               }
+            },
+            "additionalProperties": false
+         },
+         "UnitUpdateDTO": {
+            "type": "object",
+            "properties": {
+               "nid": {
+                  "type": "integer",
+                  "format": "int32"
+               },
+               "tid": {
+                  "type": "string",
+                  "nullable": true
+               },
+               "abbreviation": {
+                  "type": "string",
+                  "nullable": true
+               }
+            },
+            "additionalProperties": false
+         }
+      }
+   }
+}

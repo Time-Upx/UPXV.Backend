@@ -4,28 +4,44 @@ namespace UPXV.Data.Seeds;
 
 public static class PatrimonySeeds
 {
-   public static readonly Patrimony[] Data = [Patrimony1!, Patrimony2!, Patrimony3!, Patrimony4!];
+   public static Patrimony[] Data => [FreezerExposicao, CaixaRegistradora, MesaExterna, MaquinaEspresso];
 
-   public static readonly Patrimony Patrimony1 = new()
+   public static readonly Patrimony FreezerExposicao = new()
    {
-      Tid = "Patrimônio 1",
-      RegisteredBy = "José",
-      Status = StatusSeeds.None,
+      Nid = 1,
+      Tid = "Freezer de Exposição Principal",
+      Description = "Freezer de exposição para sorvetes com capacidade para 12 sabores.",
+      RegisteredBy = "Alice",
+      StatusNid = StatusSeeds.EmUso.Nid,
+      Tags = [TagSeeds.Equipamento, TagSeeds.Refrigerado]
    };
-   public static readonly Patrimony Patrimony2 = new ()
+
+   public static readonly Patrimony CaixaRegistradora = new()
    {
-      Tid = "Patrimônio 2",
-      Status = StatusSeeds.None,
+      Nid = 2,
+      Tid = "Caixa Registradora (PDV)",
+      Description = "Sistema de ponto de venda e gaveta de dinheiro.",
+      RegisteredBy = "Alice",
+      StatusNid = StatusSeeds.EmUso.Nid,
+      Tags = [TagSeeds.Equipamento]
    };
-   public static readonly Patrimony Patrimony3 = new ()
+
+   public static readonly Patrimony MesaExterna = new()
    {
-      Tid = "Patrimônio 3",
-      RegisteredBy = "Maria",
-      Status = StatusSeeds.None,
+      Nid = 3,
+      Tid = "Mesa para Área Externa",
+      RegisteredBy = "Bob",
+      StatusNid = StatusSeeds.EmEstoque.Nid,
+      Tags = [TagSeeds.Mobilia]
    };
-   public static readonly Patrimony Patrimony4 = new ()
+
+   public static readonly Patrimony MaquinaEspresso = new()
    {
-      Tid = "Patrimônio 4",
-      Status = StatusSeeds.None,
+      Nid = 4,
+      Tid = "Máquina de Espresso",
+      Description = "Para fazer café e affogatos.",
+      RegisteredBy = "Alice",
+      StatusNid = StatusSeeds.EmManutencao.Nid,
+      Tags = [TagSeeds.Equipamento]
    };
 }

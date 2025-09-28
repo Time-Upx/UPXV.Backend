@@ -6,10 +6,7 @@ namespace UPXV.Data;
 
 public class UPXV_Context : DbContext
 {
-   public UPXV_Context (DbContextOptions<UPXV_Context> options) : base(options) 
-   {
-
-   }
+   public UPXV_Context (DbContextOptions<UPXV_Context> options) : base(options) {}
    public DbSet<Consumable> Consumables { get; set; }
    public DbSet<Patrimony> Patrimonies { get; set; }
    public DbSet<Status> Status { get; set; }

@@ -4,30 +4,30 @@ namespace UPXV.Data.Seeds;
 
 public static class StatusSeeds
 {
-   public static readonly Status[] Data = [None!, Status1!, Status2!, Status3!, Status4!];
+   public static Status[] Data => [EmUso, EmManutencao, ComDefeito, EmEstoque];
 
-   public static readonly Status None = new() 
+   public static readonly Status EmUso = new()
    {
-      Tid = "Nenhum",
-      Description = "Nenhum status foi dado para este item até o momento"
+      Nid = 1,
+      Tid = "Em Uso",
+      Description = "Item está atualmente em operação."
    };
-
-   public static readonly Status Status1 = new()
+   public static readonly Status EmManutencao = new()
    {
-      Tid = "Status1",
-      Description = "Status1 Description"
+      Nid = 2,
+      Tid = "Em Manutenção",
+      Description = "Item está passando por manutenção."
    };
-   public static readonly Status Status2 = new()
+   public static readonly Status ComDefeito = new()
    {
-      Tid = "Status2",
+      Nid = 3,
+      Tid = "Com Defeito",
+      Description = "Item está fora de serviço e precisa de reparo."
    };
-   public static readonly Status Status3 = new()
+   public static readonly Status EmEstoque = new()
    {
-      Tid = "Status3",
-      Description = "Status3 Description"
-   };
-   public static readonly Status Status4 = new()
-   {
-      Tid = "Status1",
+      Nid = 4,
+      Tid = "Em Estoque",
+      Description = "Item está funcional, mas não está em uso no momento."
    };
 }

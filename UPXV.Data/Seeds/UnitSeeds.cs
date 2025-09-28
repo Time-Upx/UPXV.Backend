@@ -4,35 +4,30 @@ namespace UPXV.Data.Seeds;
 
 public static class UnitSeeds
 {
-   public static readonly Unit[] Data = [Meters!, SingleUnit!, Kilograms!, Grams!, Liters!];
+   public static Unit[] Data => [Litro, Quilograma, Caixa, Unidade];
 
-   public static readonly Unit Meters = new ()
+   public static readonly Unit Litro = new()
    {
-      Tid = "Metros",
-      Abbreviation = "m",
+      Nid = 1,
+      Tid = "Litro",
+      Abbreviation = "L"
    };
-
-   public static readonly Unit SingleUnit = new ()
+   public static readonly Unit Quilograma = new()
    {
-      Tid = "Unidades",
-      Abbreviation = "un",
+      Nid = 2,
+      Tid = "Quilograma",
+      Abbreviation = "kg"
    };
-
-   public static readonly Unit Kilograms = new ()
+   public static readonly Unit Caixa = new()
    {
-      Tid = "Kilogramas",
-      Abbreviation = "kg",
+      Nid = 3,
+      Tid = "Caixa",
+      Abbreviation = "cx"
    };
-
-   public static readonly Unit Grams = new()
+   public static readonly Unit Unidade = new()
    {
-      Tid = "Gramas",
-      Abbreviation = "g",
-   };
-
-   public static readonly Unit Liters = new()
-   {
-      Tid = "Litros",
-      Abbreviation = "L",
+      Nid = 4,
+      Tid = "Unidade",
+      Abbreviation = "un"
    };
 }
