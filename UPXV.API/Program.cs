@@ -1,36 +1,46 @@
 using UPXV.Data;
 using UPXV_API;
 
-var builder = WebApplication.CreateBuilder(args);
+namespace UPXV.Api;
 
-IConfiguration config = builder.Configuration;
+public class Program
+{
+   public static void Main(string[] args)
+   {
+      var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+      IConfiguration config = builder.Configuration;
 
-builder.Services.AddControllers();
+      // Add services to the container.
 
-builder.Services.AddCors();
+      builder.Services.AddCors();
 
-builder.Services.AddLogging();
+      builder.Services.AddLogging();
 
-builder.Services.AddDependencies();
+      builder.Services.AddServices();
+      builder.Services.AddRepositories();
+      builder.Services.AddValidators();
+      builder.Services.AddControllers();
 
-builder.Services.AddDbContext(config);
+      builder.Services.AddMySQL(config);
 
-var app = builder.Build();
+      var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+      app.Services.InitializeDatabase();
 
-app.UseHttpsRedirection();
+      app.UseHttpsRedirection();
 
-app.UseSwagger();
+      app.UseSwagger();
 
-app.UseSwaggerUI(c => {
-   c.SwaggerEndpoint("swagger", "Swagger");
-});
+      app.UseSwaggerUI(c => {
+         c.SwaggerEndpoint("swagger", "Swagger");
+      });
 
-//app.UseAuthorization();
+      //app.UseAuthorization();
 
-app.MapControllers();
+      app.MapControllers();
 
-app.Run();
+      app.Run();
+
+   }
+}

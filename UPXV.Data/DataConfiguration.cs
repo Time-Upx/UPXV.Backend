@@ -1,15 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using UPXV.Data.Mappings;
 using UPXV.Data.Seeds;
 
 namespace UPXV.Data;
 
 public static class DataConfiguration
 {
-   public static IServiceCollection AddDbContext(this IServiceCollection services, IConfiguration configuration)
+   public static IServiceCollection AddMySQL(this IServiceCollection services, IConfiguration configuration)
    {
       string enviroment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIROMENT") ?? "Development";
       var connectionString = configuration.GetConnectionString(enviroment);
@@ -25,8 +25,15 @@ public static class DataConfiguration
       );
    }
 
-   public static void InitializeDatabase(this UPXV_Context context)
+   public static void InitializeDatabase(this IServiceProvider provider)
    {
+      UPXV_Context context = provider.GetRequiredService<UPXV_Context>();
+
+      if (context.Database.IsRelational())
+      {
+         context.Database.Migrate();
+      }
+
       context.SeedDatabase();
    }
 

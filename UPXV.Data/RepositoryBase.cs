@@ -17,11 +17,6 @@ public abstract class RepositoryBase<TEntity> where TEntity : class
       .Find(nid)
       .LoadRequirements(this);
 
-   public TEntity? FindByTid (string tid) => _context
-      .Set<TEntity>()
-      .FirstOrDefault(model => model.Tid == tid)
-      .LoadRequirements(this);
-
    public TEntity? FindBy (Func<TEntity, bool> predicate) => _context
       .Set<TEntity>()
       .FirstOrDefault(predicate)
