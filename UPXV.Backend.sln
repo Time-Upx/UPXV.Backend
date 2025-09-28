@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36401.2
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UPXV.Models", "UPXV.Models\UPXV.Models.csproj", "{5BDEDCF7-A026-40E4-B8A0-E8ED19D82934}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UPXV.Entities", "UPXV.Models\UPXV.Entities.csproj", "{5BDEDCF7-A026-40E4-B8A0-E8ED19D82934}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UPXV.Api", "UPXV.API\UPXV.Api.csproj", "{827F7DA4-A988-EEEF-7F76-3F69A1D1CFF0}"
 EndProject

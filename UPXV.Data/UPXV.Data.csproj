@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UPXV.Common\UPXV.Common.csproj" />
+    <ProjectReference Include="..\UPXV.Models\UPXV.Entities.csproj" />
     <ProjectReference Include="..\UPXV.Models\UPXV.Models.csproj" />
   </ItemGroup>
 

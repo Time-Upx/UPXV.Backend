@@ -1,11 +1,16 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using UPXV.Common.Page;
 using UPXV.Models;
-using UPXV_API;
 
 namespace UPXV.Data;
 
-public record Query<TEntity> where TEntity : class, IEntityBase
+public static class QueryExtensions
+{
+   public static IQueryable<T> ApplyQuery<T> (this IQueryable<T> queryable, Query<T> query) 
+      where T : class => query.ApplyTo(queryable);
+}
+public record Query<TEntity> where TEntity : class
 {
    private int _skip;
    private int _take;
@@ -13,14 +18,12 @@ public record Query<TEntity> where TEntity : class, IEntityBase
    private readonly ICollection<Expression<Func<TEntity, bool>>> _filters = [];
    private readonly ICollection<Expression<Func<TEntity, object>>> _includes = [];
    private readonly ICollection<(Expression<Func<TEntity, object>> Expression, bool Descending)> _sortings = [];
-
-   public static Query<T> From<T> (PageDTO<T> page) where T : class, IEntityBase
+   public Query() { }
+   public Query (PageDTO<TEntity> page)
    {
-      return new Query<T>
-      {
-         _skip = page.CurrentPage * page.PageSize,
-         _take = page.PageSize,
-      };
+      if (page is null) throw new ArgumentNullException(nameof (page));
+      _skip = page.CurrentPage * page.PageSize;
+      _take = page.PageSize;
    }
    public Query<TEntity> Skip (int skip)
    {

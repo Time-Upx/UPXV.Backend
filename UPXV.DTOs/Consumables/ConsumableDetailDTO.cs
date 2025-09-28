@@ -4,20 +4,19 @@ using UPXV.Models;
 
 namespace UPXV.DTOs.Consumables;
 
-public record ConsumableListDTO
+public record ConsumableDetailDTO
 {
    public required int Nid { get; set; }
    public required string Tid { get; set; }
-   public IEnumerable<TagListDTO> Tags { get; set; } = [];
-   public double Quantity { get; set; }
-   public required UnitListDTO Unit { get; set; }
-
-   public static ConsumableListDTO Of (Consumable consumable) => new ConsumableListDTO
+   public required double Quantity { get; set; }
+   public required IEnumerable<TagListDTO> Tags { get; set; }
+   public required UnitDetailDTO Unit { get; set; }
+   public static ConsumableDetailDTO Of (Consumable consumable) => new ConsumableDetailDTO
    {
       Nid = consumable.Nid,
       Tid = consumable.Tid,
       Quantity = consumable.Quantity,
       Tags = consumable.Tags.Select(TagListDTO.Of),
-      Unit = UnitListDTO.Of(consumable.Unit!),
+      Unit = UnitDetailDTO.Of(consumable.Unit!),
    };
 }

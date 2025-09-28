@@ -1,8 +1,8 @@
 ﻿namespace UPXV.Models;
 
-public class Tag : IEntityBase
+public class Tag
 {
    public int Nid { get; set; }
    public required string Tid { get; set; }
-   public string Description { get; set; } = string.Empty;
+   public string? Description { get; set; }
 }

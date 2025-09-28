@@ -1,16 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using UPXV.Models;
 using UPXV.Services;
 
-namespace UPXV_API.Controllers;
+namespace UPXV_API;
 
 [ApiController]
 [Route("[controller]")]
-public class ItemController : ControllerBase<Item>
+public sealed class ItemController : ControllerBase
 {
-   private ItemService _service => (ItemService) _serviceBase;
-
-   public ItemController (ItemService service) : base (service)
+   private ItemService _service;
+   public ItemController (ItemService service)
    {
+      _service = service;
    }
+
+   [HttpGet]
+   public IActionResult List (int page, int size) => Ok(_service.List(page, size));
 }
