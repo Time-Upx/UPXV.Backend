@@ -1,4 +1,6 @@
 ﻿using UPXV.Backend.API.Actions.Consumables;
+using UPXV.Backend.API.Actions.QRCode;
+using UPXV.Backend.Common.Configuration;
 
 namespace UPXV.Backend.API.Routes;
 
@@ -10,6 +12,9 @@ public class ConsumableRoutes : IRouter
    public string DETAIL => "/{id}";
    public string ADD => "/add/{id}";
    public string TAKE => "/take/{id}";
+
+   public ConsumableRoutes(QRCodeConfiguration qrcodeConfig) => _qrcodeConfig = qrcodeConfig;
+   private QRCodeConfiguration _qrcodeConfig;
 
    public void ConfigureEndpoints (IEndpointRouteBuilder endpoints)
    {

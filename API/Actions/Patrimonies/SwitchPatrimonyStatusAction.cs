@@ -10,12 +10,12 @@ public static class SwitchPatrimonyStatusAction
    public static IResult MapEndpoint(SwitchPatrimonyStatusDTO dto, UPXV_Context context)
    {
       return Execute(dto, context).Either(
-         Results.Ok,
+         Microsoft.AspNetCore.Http.Results.Ok,
          failure => failure switch
          {
-            EntityNotFoundException<Patrimony> e => Results.NotFound(e),
-            EntityNotFoundException<Status> e => Results.NotFound(e),
-            Exception e => Results.Problem(e.Message, statusCode: 500)
+            EntityNotFoundException<Patrimony> e => Microsoft.AspNetCore.Http.Results.NotFound(e),
+            EntityNotFoundException<Status> e => Microsoft.AspNetCore.Http.Results.NotFound(e),
+            Exception e => Microsoft.AspNetCore.Http.Results.Problem(e.Message, statusCode: 500)
          });
    }
    public static Attempt<PatrimonyDetailDTO, Exception> Execute (SwitchPatrimonyStatusDTO dto, UPXV_Context context)

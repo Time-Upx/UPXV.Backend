@@ -1,26 +1,27 @@
 ﻿using Microsoft.EntityFrameworkCore;
+
 using UPXV.Backend.Data.Seeds;
 
 namespace UPXV.Backend.Data;
 
-public static class DataConfiguration
+public static class DataSetup
 {
-   public static IServiceCollection AddMySQL (this IServiceCollection services, IConfiguration configuration)
+   public static IServiceCollection AddMySQL (WebApplicationBuilder builder)
    {
       string enviroment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIROMENT") ?? "Development";
-      var connectionString = configuration.GetConnectionString(enviroment);
+      var connectionString = builder.Configuration.GetConnectionString(enviroment);
       var serverVersion = ServerVersion.AutoDetect(connectionString);
 
-      return services.AddDbContext<UPXV_Context>(dbContextOptions => dbContextOptions
+      return builder.Services.AddDbContext<UPXV_Context>(dbContextOptions => dbContextOptions
          .UseMySql(connectionString, serverVersion)
          .LogTo(Console.WriteLine, LogLevel.Information)
          .EnableSensitiveDataLogging()
          .EnableDetailedErrors());
    }
 
-   public static void InitializeDatabase(this IServiceProvider provider)
+   public static void InitializeDatabase(WebApplication app)
    {
-      using IServiceScope scope = provider.CreateScope();
+      using IServiceScope scope = app.Services.CreateScope();
       UPXV_Context context = scope.ServiceProvider.GetRequiredService<UPXV_Context>();
 
       if (context.Database.IsRelational())
@@ -30,7 +31,8 @@ public static class DataConfiguration
 
       SeedDatabase(context);
    }
-   public static void SeedDatabase (UPXV_Context context)
+
+   private static void SeedDatabase (UPXV_Context context)
    {
       context.Database.EnsureCreated();
 

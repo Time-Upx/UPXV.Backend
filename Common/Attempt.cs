@@ -39,7 +39,7 @@ public abstract record Attempt<TSuccess, TFailure>
             success = s.Value;
             return true;
         }
-        success = default(TSuccess);
+        success = default!;
         return false;
     }
 
@@ -55,7 +55,7 @@ public abstract record Attempt<TSuccess, TFailure>
             failure = f.Value;
             return true;
         }
-        failure = default(TFailure);
+        failure = default!;
         return false;
     }
 
@@ -159,7 +159,7 @@ public abstract record Attempt<TFailure>
             failure = f.Value;
             return true;
         }
-        failure = default(TFailure);
+        failure = default!;
         return false;
     }
 

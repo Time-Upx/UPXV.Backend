@@ -10,11 +10,11 @@ public static class GetUnitAction
    public static IResult MapEndpoint (int id, UPXV_Context context)
    {
       return Execute(id, context).Either(
-         Results.Ok,
+         Microsoft.AspNetCore.Http.Results.Ok,
          failures => failures switch
          {
-            EntityNotFoundException<Unit> e => Results.NotFound(e),
-            Exception e => Results.Problem(e.Message, statusCode: 500)
+            EntityNotFoundException<Unit> e => Microsoft.AspNetCore.Http.Results.NotFound(e),
+            Exception e => Microsoft.AspNetCore.Http.Results.Problem(e.Message, statusCode: 500)
          });
    }
 

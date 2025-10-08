@@ -11,12 +11,12 @@ public static class UpdateTagAction
    public static IResult MapEndpoint (TagUpdateDTO dto, UPXV_Context context)
    {
       return Execute(dto, context).Either(
-         Results.Ok,
-         static failures => failures switch
+         Microsoft.AspNetCore.Http.Results.Ok,
+failures => failures switch
          {
-            ValidationException e => Results.BadRequest(e),
-            EntityNotFoundException<Tag> e => Results.NotFound(e),
-            Exception e => Results.Problem(e.Message, statusCode: 500)
+            ValidationException e => Microsoft.AspNetCore.Http.Results.BadRequest(e),
+            EntityNotFoundException<Tag> e => Microsoft.AspNetCore.Http.Results.NotFound(e),
+            Exception e => Microsoft.AspNetCore.Http.Results.Problem(e.Message, statusCode: 500)
          });
    }
 

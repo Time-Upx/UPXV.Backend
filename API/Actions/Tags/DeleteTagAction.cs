@@ -10,11 +10,11 @@ public static class DeleteTagAction
    public static IResult MapEndpoint (UPXV_Context context, int nid)
    {
       return Execute(context, nid).Either(
-         Results.Ok,
+         Microsoft.AspNetCore.Http.Results.Ok,
          failure => failure switch
          {
-            EntityNotFoundException<Tag> e => Results.NotFound(e),
-            Exception e => Results.Problem(e.Message, statusCode: 500),
+            EntityNotFoundException<Tag> e => Microsoft.AspNetCore.Http.Results.NotFound(e),
+            Exception e => Microsoft.AspNetCore.Http.Results.Problem(e.Message, statusCode: 500),
          });
    }
 

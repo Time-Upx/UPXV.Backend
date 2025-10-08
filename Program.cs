@@ -1,6 +1,8 @@
-using UPXV.Backend.Data;
 using UPXV.Backend.API.Routes;
 using UPXV.Backend.Common.Configuration;
+using UPXV.Backend.Common;
+using System.Data;
+using UPXV.Backend.Data;
 
 namespace UPXV.Backend;
 
@@ -8,30 +10,21 @@ public class Program
 {
    public static void Main(string[] args)
    {
-      var builder = WebApplication.CreateBuilder(args);
+      WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-      IConfiguration config = builder.Configuration;
+      Registry.RegisterServices(builder);
 
-      builder.Services.AddCors();
+      Registry.RegisterConfigurations(builder);
 
-      builder.Services.AddMySQL(config);
+      Registry.RegisterRouters(builder);
 
-      builder.Services.AddEndpointsApiExplorer();
-      builder.Services.AddSwaggerGen();
+      DataSetup.AddMySQL(builder);
 
-      builder.Services.SetupConfigurations();
+      WebApplication app = builder.Build();
 
-      var app = builder.Build();
+      Registry.ConfigureApplication(app);
 
-      app.Services.InitializeDatabase();
-
-      app.UseHttpsRedirection();
-
-      app.UseSwagger();
-
-      app.UseSwaggerUI(c => {
-         c.SwaggerEndpoint("v1/swagger.json", "UPXV");
-      });
+      Registry.PrepareEnviroment(app);
 
       Routes.MapRoutes(app);
 

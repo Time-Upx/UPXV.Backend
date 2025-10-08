@@ -2,6 +2,7 @@
 
 public record FileConfiguration
 {
+   public const string SECTION_NAME = "Files";
    public required string TemporaryFolderPath { get; set; }
    public required string DestinationFolderBasePath { get; set; }
 
@@ -9,6 +10,7 @@ public record FileConfiguration
    {
       return provider
             .GetRequiredService<IConfiguration>()
+            .GetSection(SECTION_NAME)
             .Get<FileConfiguration>()
             ?? throw Registry.ResolutionException<FileConfiguration>();
    }

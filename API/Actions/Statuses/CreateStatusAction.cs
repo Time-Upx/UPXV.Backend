@@ -11,11 +11,11 @@ public static class CreateStatusAction
    public static IResult MapEndpoint (StatusCreateDTO dto, UPXV_Context context)
    {
       return Execute(dto, context).Either(
-         Results.Ok,
+         Microsoft.AspNetCore.Http.Results.Ok,
          failures => failures switch
          {
-            ValidationException e => Results.BadRequest(e),
-            Exception e => Results.Problem(e.Message, statusCode: 500)
+            ValidationException e => Microsoft.AspNetCore.Http.Results.BadRequest(e),
+            Exception e => Microsoft.AspNetCore.Http.Results.Problem(e.Message, statusCode: 500)
          });
    }
 

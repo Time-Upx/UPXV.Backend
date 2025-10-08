@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Mvc;
 using UPXV.Backend.API.DTOs.Consumables;
 using UPXV.Backend.API.Entities;
+using UPXV.Backend.Common.Configuration;
 using UPXV.Backend.Common.Exceptions;
 using UPXV.Backend.Data;
 

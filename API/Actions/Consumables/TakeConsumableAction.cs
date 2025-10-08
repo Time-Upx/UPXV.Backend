@@ -10,11 +10,11 @@ public static class TakeConsumableAction
    public static IResult MapEndpoint(ConsumableMovementDTO dto, UPXV_Context context)
    {
       return Execute(dto, context).Either(
-         () => Results.Ok(),
+         () => Microsoft.AspNetCore.Http.Results.Ok(),
          failure => failure switch
          {
-            EntityNotFoundException<Consumable> e => Results.NotFound(e),
-            Exception e => Results.Problem(e.Message, statusCode: 500)
+            EntityNotFoundException<Consumable> e => Microsoft.AspNetCore.Http.Results.NotFound(e),
+            Exception e => Microsoft.AspNetCore.Http.Results.Problem(e.Message, statusCode: 500)
          });
    }
    public static Attempt<Exception> Execute (ConsumableMovementDTO dto, UPXV_Context context)

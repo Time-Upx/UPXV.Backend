@@ -10,7 +10,7 @@ public static class ListStatusAction
    public static IResult MapEndpoint (int pageIndex, int pageSize, UPXV_Context context)
    {
       var page = Execute(pageIndex, pageSize, context);
-      return Results.Ok(page);
+      return Microsoft.AspNetCore.Http.Results.Ok(page);
    }
 
    public static PageDTO<StatusListDTO> Execute (int pageIndex, int pageSize, UPXV_Context context)
