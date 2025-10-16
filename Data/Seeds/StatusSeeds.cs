@@ -1,4 +1,4 @@
-﻿using UPXV.Backend.API.Entities;
+﻿using UPXV.Backend.Entities;
 
 namespace UPXV.Backend.Data.Seeds;
 

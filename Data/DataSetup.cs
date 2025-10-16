@@ -4,9 +4,9 @@ using UPXV.Backend.Data.Seeds;
 
 namespace UPXV.Backend.Data;
 
-public static class DataSetup
+public class DataSetup
 {
-   public static IServiceCollection AddMySQL (WebApplicationBuilder builder)
+   public IServiceCollection AddMySQL (WebApplicationBuilder builder)
    {
       string enviroment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIROMENT") ?? "Development";
       var connectionString = builder.Configuration.GetConnectionString(enviroment);
@@ -19,7 +19,7 @@ public static class DataSetup
          .EnableDetailedErrors());
    }
 
-   public static void InitializeDatabase(WebApplication app)
+   public void InitializeDatabase(WebApplication app)
    {
       using IServiceScope scope = app.Services.CreateScope();
       UPXV_Context context = scope.ServiceProvider.GetRequiredService<UPXV_Context>();
@@ -32,7 +32,7 @@ public static class DataSetup
       SeedDatabase(context);
    }
 
-   private static void SeedDatabase (UPXV_Context context)
+   private void SeedDatabase (UPXV_Context context)
    {
       context.Database.EnsureCreated();
 

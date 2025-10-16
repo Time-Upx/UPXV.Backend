@@ -1,0 +1,15 @@
+﻿using UPXV.Backend.Entities;
+
+namespace UPXV.Backend.DTOs.Statuses;
+
+public record StatusCreateDTO
+{
+   public required string Name { get; set; }
+   public string? Description { get; set; }
+
+   public Status BuildEntity () => new Status
+   {
+      Name = Name,
+      Description = Description,
+   };
+}

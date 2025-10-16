@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using UPXV.Backend.API.Entities;
+using UPXV.Backend.Entities;
 
 namespace UPXV.Backend.Data.Mappings;
 
