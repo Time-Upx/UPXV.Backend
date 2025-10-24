@@ -37,4 +37,13 @@ public static class EnumerableExtensions
       }
       return array;
    }
+
+   public static IEnumerable<(int Index, T Item)> Enumerate<T>(this IEnumerable<T> self)
+   {
+      int index = 0;
+      foreach (T item in self)
+      {
+         yield return (index++, item);
+      }
+   }
 }

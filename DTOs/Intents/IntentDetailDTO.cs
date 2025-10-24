@@ -8,6 +8,7 @@ public record IntentDetailDTO
    public required IntentType Type { get; set; }
    public required string Name { get; set; }
    public required string Description { get; set; }
+   public string[] Parameters { get; set; } = [];
 
    public static IntentDetailDTO Of (Intent intent) => new()
    {
@@ -15,5 +16,6 @@ public record IntentDetailDTO
       Type = intent.Type,
       Name = intent.Name,
       Description = intent.Description,
+      Parameters = intent.Parameters.Select(ip => ip.Parameter).ToArray(),
    };
 }

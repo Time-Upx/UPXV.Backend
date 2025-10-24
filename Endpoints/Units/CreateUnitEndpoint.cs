@@ -13,7 +13,7 @@ public class CreateUnitEndpoint : IEndpoint
    public void MapEndpoint (IEndpointRouteBuilder app) =>
       app.MapPost("", (UnitCreateDTO dto, UPXV_Context context, IValidator<UnitCreateDTO> validator) =>
       {
-         if (validator.TryValidate(dto, out ValidationResult result))
+         if (!validator.TryValidate(dto, out ValidationResult result))
             return Problems.Validation(result.Errors);
 
          Unit unit = dto.BuildEntity();

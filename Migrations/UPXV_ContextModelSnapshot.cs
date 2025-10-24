@@ -52,7 +52,7 @@ namespace UPXV.Backend.Migrations
                     b.ToTable("PatrimonyTag");
                 });
 
-            modelBuilder.Entity("UPXV.Backend.API.Entities.Consumable", b =>
+            modelBuilder.Entity("UPXV.Backend.Entities.Consumable", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -83,7 +83,60 @@ namespace UPXV.Backend.Migrations
                     b.ToTable("Consumables");
                 });
 
-            modelBuilder.Entity("UPXV.Backend.API.Entities.Patrimony", b =>
+            modelBuilder.Entity("UPXV.Backend.Entities.Intent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UrlTemplate")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Intents");
+                });
+
+            modelBuilder.Entity("UPXV.Backend.Entities.IntentParameter", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("IntentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Parameter")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IntentId");
+
+                    b.ToTable("IntentParameters", (string)null);
+                });
+
+            modelBuilder.Entity("UPXV.Backend.Entities.Patrimony", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -120,7 +173,75 @@ namespace UPXV.Backend.Migrations
                     b.ToTable("Patrimonies");
                 });
 
-            modelBuilder.Entity("UPXV.Backend.API.Entities.Status", b =>
+            modelBuilder.Entity("UPXV.Backend.Entities.QRCode", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("Expiration")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<int>("IntentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("TimesUsed")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UsageLimit")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IntentId");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("QRCodes");
+                });
+
+            modelBuilder.Entity("UPXV.Backend.Entities.QRCodeArgument", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Parameter")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("QRCodeId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("QRCodeId");
+
+                    b.ToTable("QRCodeArguments");
+                });
+
+            modelBuilder.Entity("UPXV.Backend.Entities.Status", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -143,7 +264,7 @@ namespace UPXV.Backend.Migrations
                     b.ToTable("Status");
                 });
 
-            modelBuilder.Entity("UPXV.Backend.API.Entities.Tag", b =>
+            modelBuilder.Entity("UPXV.Backend.Entities.Tag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -166,7 +287,7 @@ namespace UPXV.Backend.Migrations
                     b.ToTable("Tags");
                 });
 
-            modelBuilder.Entity("UPXV.Backend.API.Entities.Unit", b =>
+            modelBuilder.Entity("UPXV.Backend.Entities.Unit", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -195,13 +316,13 @@ namespace UPXV.Backend.Migrations
 
             modelBuilder.Entity("ConsumableTag", b =>
                 {
-                    b.HasOne("UPXV.Backend.API.Entities.Consumable", null)
+                    b.HasOne("UPXV.Backend.Entities.Consumable", null)
                         .WithMany()
                         .HasForeignKey("ConsumableId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("UPXV.Backend.API.Entities.Tag", null)
+                    b.HasOne("UPXV.Backend.Entities.Tag", null)
                         .WithMany()
                         .HasForeignKey("TagsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -210,22 +331,22 @@ namespace UPXV.Backend.Migrations
 
             modelBuilder.Entity("PatrimonyTag", b =>
                 {
-                    b.HasOne("UPXV.Backend.API.Entities.Patrimony", null)
+                    b.HasOne("UPXV.Backend.Entities.Patrimony", null)
                         .WithMany()
                         .HasForeignKey("PatrimonyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("UPXV.Backend.API.Entities.Tag", null)
+                    b.HasOne("UPXV.Backend.Entities.Tag", null)
                         .WithMany()
                         .HasForeignKey("TagsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("UPXV.Backend.API.Entities.Consumable", b =>
+            modelBuilder.Entity("UPXV.Backend.Entities.Consumable", b =>
                 {
-                    b.HasOne("UPXV.Backend.API.Entities.Unit", "Unit")
+                    b.HasOne("UPXV.Backend.Entities.Unit", "Unit")
                         .WithMany()
                         .HasForeignKey("UnitId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -234,15 +355,58 @@ namespace UPXV.Backend.Migrations
                     b.Navigation("Unit");
                 });
 
-            modelBuilder.Entity("UPXV.Backend.API.Entities.Patrimony", b =>
+            modelBuilder.Entity("UPXV.Backend.Entities.IntentParameter", b =>
                 {
-                    b.HasOne("UPXV.Backend.API.Entities.Status", "Status")
+                    b.HasOne("UPXV.Backend.Entities.Intent", "Intent")
+                        .WithMany("Parameters")
+                        .HasForeignKey("IntentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Intent");
+                });
+
+            modelBuilder.Entity("UPXV.Backend.Entities.Patrimony", b =>
+                {
+                    b.HasOne("UPXV.Backend.Entities.Status", "Status")
                         .WithMany()
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Status");
+                });
+
+            modelBuilder.Entity("UPXV.Backend.Entities.QRCode", b =>
+                {
+                    b.HasOne("UPXV.Backend.Entities.Intent", "Intent")
+                        .WithMany()
+                        .HasForeignKey("IntentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Intent");
+                });
+
+            modelBuilder.Entity("UPXV.Backend.Entities.QRCodeArgument", b =>
+                {
+                    b.HasOne("UPXV.Backend.Entities.QRCode", "QRCode")
+                        .WithMany("Arguments")
+                        .HasForeignKey("QRCodeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("QRCode");
+                });
+
+            modelBuilder.Entity("UPXV.Backend.Entities.Intent", b =>
+                {
+                    b.Navigation("Parameters");
+                });
+
+            modelBuilder.Entity("UPXV.Backend.Entities.QRCode", b =>
+                {
+                    b.Navigation("Arguments");
                 });
 #pragma warning restore 612, 618
         }

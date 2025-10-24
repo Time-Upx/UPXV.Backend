@@ -16,6 +16,7 @@ public class GetPatrimonyEndpoint : IEndpoint
          context.LoadRequirements(patrimony);
          return Results.Ok(PatrimonyDetailDTO.Of(patrimony));
       })
+      .WithDescription("Detalha os dados do Patrimônio")
       .Produces<PatrimonyDetailDTO>(StatusCodes.Status200OK)
       .Produces<EntityNotFoundDetails>(StatusCodes.Status404NotFound);
 }

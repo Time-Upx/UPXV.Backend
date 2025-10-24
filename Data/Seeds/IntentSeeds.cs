@@ -1,11 +1,11 @@
 ﻿using UPXV.Backend.Endpoints;
-using UPXV.Backend.Endpoints.QRCodes;
 using UPXV.Backend.Entities;
 
 namespace UPXV.Backend.Data.Seeds;
 
 public static class IntentSeeds
 {
+   public static IntentParameter Id (int intentId) => new (intentId, "id");
    public static Intent[] Data => [
       ConsumableList, ConsumableDetail, ConsumableAdd, ConsumableTake,
       PatrimonyList, PatrimonyDetail, PatrimonySwitchStatus,
@@ -20,7 +20,7 @@ public static class IntentSeeds
    {
       Id = 1,
       Type = IntentType.Redirect,
-      Name = "Listagem de Tags",
+      Name = "Página de Tags",
       Description = "",
       UrlTemplate = Routes.Tags.LIST_PAGE,
       Parameters = [],
@@ -30,17 +30,17 @@ public static class IntentSeeds
    {
       Id = 2,
       Type = IntentType.Redirect,
-      Name = "Detalhamento de Tag",
+      Name = "Página de Detalhamento de Tag",
       Description = "",
       UrlTemplate = Routes.Tags.DETAIL_PAGE,
-      Parameters = ["id"],
+      Parameters = [Id(2)],
    };
    
    public static readonly Intent ItemList = new()
    {
       Id = 3,
       Type = IntentType.Redirect,
-      Name = "Listagem de Items",
+      Name = "Página de Items",
       Description = "",
       UrlTemplate = Routes.Items.LIST_PAGE,
       Parameters = [],
@@ -50,7 +50,7 @@ public static class IntentSeeds
    {
       Id = 4,
       Type = IntentType.Redirect,
-      Name = "Listagem de Códigos QR",
+      Name = "Página de Códigos QR",
       Description = "",
       UrlTemplate = Routes.QRCodes.LIST_PAGE,
       Parameters = [],
@@ -60,17 +60,17 @@ public static class IntentSeeds
    {
       Id = 5,
       Type = IntentType.Redirect,
-      Name = "Detalhamento de Código QR",
+      Name = "Página de Detalhamento de Código QR",
       Description = "",
       UrlTemplate = Routes.QRCodes.DETAIL_PAGE,
-      Parameters = ["id"],
+      Parameters = [Id(5)],
    };
 
    public static readonly Intent StatusList = new()
    {
       Id = 6,
       Type = IntentType.Redirect,
-      Name = "Listagem de Status",
+      Name = "Página de Status",
       Description = "",
       UrlTemplate = Routes.Status.LIST_PAGE,
       Parameters = [],
@@ -80,17 +80,17 @@ public static class IntentSeeds
    {
       Id = 7,
       Type = IntentType.Redirect,
-      Name = "Detalhamento de Status",
+      Name = "Página de Detalhamento de Status",
       Description = "",
       UrlTemplate = Routes.Status.DETAIL_PAGE,
-      Parameters = ["id"],
+      Parameters = [Id(7)],
    };
    
    public static readonly Intent UnitList = new()
    {
       Id = 8,
       Type = IntentType.Redirect,
-      Name = "Listagem de Unidades",
+      Name = "Página de Unidades",
       Description = "",
       UrlTemplate = Routes.Units.LIST_PAGE,
       Parameters = [],
@@ -100,17 +100,17 @@ public static class IntentSeeds
    {
       Id = 9,
       Type = IntentType.Redirect,
-      Name = "Detalhamento de Unidade",
+      Name = "Página de Detalhamento de Unidade",
       Description = "",
       UrlTemplate = Routes.Units.DETAIL_PAGE,
-      Parameters = ["id"],
+      Parameters = [Id(9)],
    };
    
    public static readonly Intent ConsumableList = new()
    {
       Id = 10,
       Type = IntentType.Redirect,
-      Name = "Listagem de Consumíveis",
+      Name = "Página de Consumíveis",
       Description = "",
       UrlTemplate = Routes.Consumables.LIST_PAGE,
       Parameters = [],
@@ -120,37 +120,37 @@ public static class IntentSeeds
    {
       Id = 11,
       Type = IntentType.Redirect,
-      Name = "Detalhamento de Consumível",
+      Name = "Página de Detalhamento de Consumível",
       Description = "",
       UrlTemplate = Routes.Consumables.DETAIL_PAGE,
-      Parameters = ["id"],
+      Parameters = [Id(11)],
    };
 
    public static readonly Intent ConsumableAdd = new()
    {
       Id = 12,
       Type = IntentType.Action,
-      Name = "Entrada de Consumível",
+      Name = "Dar Entrada de Consumível",
       Description = "",
       UrlTemplate = Routes.Consumables.ADD_ACTION,
-      Parameters = ["id", "amount"],
+      Parameters = [Id(12), new(12, "amount")],
    };
    
    public static readonly Intent ConsumableTake = new()
    {
       Id = 13,
       Type = IntentType.Action,
-      Name = "Retirada de Consumível",
+      Name = "Fazer Retirada de Consumível",
       Description = "",
       UrlTemplate = Routes.Consumables.TAKE_ACTION,
-      Parameters = ["id", "amount"],
+      Parameters = [Id(13), new(13, "amount")],
    };
    
    public static readonly Intent PatrimonyList = new()
    {
       Id = 14,
       Type = IntentType.Redirect,
-      Name = "Listagem de Patrimônios",
+      Name = "Página de Patrimônios",
       Description = "",
       UrlTemplate = Routes.Patrimonies.LIST_PAGE,
       Parameters = [],
@@ -160,10 +160,10 @@ public static class IntentSeeds
    {
       Id = 15,
       Type = IntentType.Redirect,
-      Name = "Detalhamento de Patrimônio",
+      Name = "Página de Detalhamento de Patrimônio",
       Description = "",
       UrlTemplate = Routes.Patrimonies.DETAIL_PAGE,
-      Parameters = ["id"],
+      Parameters = [Id(15)],
    };
    
    public static readonly Intent PatrimonySwitchStatus = new()
@@ -173,6 +173,6 @@ public static class IntentSeeds
       Name = "Alterar Status de Patrimônio",
       Description = "",
       UrlTemplate = Routes.Patrimonies.SWITCH_STATUS_ACTION,
-      Parameters = ["id", "statusId"],
+      Parameters = [Id(16), new(16, "statusId")],
    };
 }

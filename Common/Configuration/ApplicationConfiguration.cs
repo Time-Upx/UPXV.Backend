@@ -4,6 +4,7 @@ public record ApplicationConfiguration
 {
    public const string SECTION_NAME = "AppConfig";
    public required string ClientBaseURL { get; set; }
+   public required string ServerBaseURL { get; set; }
 
    public static ApplicationConfiguration Create (IServiceProvider provider)
    {

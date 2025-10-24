@@ -16,6 +16,26 @@ namespace UPXV.Backend.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "Intents",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Type = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "varchar(255)", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Description = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    UrlTemplate = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Intents", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "Status",
                 columns: table => new
                 {
@@ -63,6 +83,58 @@ namespace UPXV.Backend.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Units", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "IntentParameters",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    IntentId = table.Column<int>(type: "int", nullable: false),
+                    Parameter = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_IntentParameters", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_IntentParameters_Intents_IntentId",
+                        column: x => x.IntentId,
+                        principalTable: "Intents",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "QRCodes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    IntentId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "varchar(255)", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Description = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    Expiration = table.Column<DateTime>(type: "datetime(6)", nullable: true),
+                    Password = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    UsageLimit = table.Column<int>(type: "int", nullable: true),
+                    TimesUsed = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QRCodes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_QRCodes_Intents_IntentId",
+                        column: x => x.IntentId,
+                        principalTable: "Intents",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -115,6 +187,30 @@ namespace UPXV.Backend.Migrations
                         name: "FK_Consumables_Units_UnitId",
                         column: x => x.UnitId,
                         principalTable: "Units",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "QRCodeArguments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    QRCodeId = table.Column<int>(type: "int", nullable: false),
+                    Parameter = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Value = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QRCodeArguments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_QRCodeArguments_QRCodes_QRCodeId",
+                        column: x => x.QRCodeId,
+                        principalTable: "QRCodes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -187,6 +283,17 @@ namespace UPXV.Backend.Migrations
                 column: "TagsId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_IntentParameters_IntentId",
+                table: "IntentParameters",
+                column: "IntentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Intents_Name",
+                table: "Intents",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Patrimonies_Name",
                 table: "Patrimonies",
                 column: "Name",
@@ -201,6 +308,22 @@ namespace UPXV.Backend.Migrations
                 name: "IX_PatrimonyTag_TagsId",
                 table: "PatrimonyTag",
                 column: "TagsId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_QRCodeArguments_QRCodeId",
+                table: "QRCodeArguments",
+                column: "QRCodeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_QRCodes_IntentId",
+                table: "QRCodes",
+                column: "IntentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_QRCodes_Name",
+                table: "QRCodes",
+                column: "Name",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Status_Name",
@@ -234,7 +357,13 @@ namespace UPXV.Backend.Migrations
                 name: "ConsumableTag");
 
             migrationBuilder.DropTable(
+                name: "IntentParameters");
+
+            migrationBuilder.DropTable(
                 name: "PatrimonyTag");
+
+            migrationBuilder.DropTable(
+                name: "QRCodeArguments");
 
             migrationBuilder.DropTable(
                 name: "Consumables");
@@ -246,10 +375,16 @@ namespace UPXV.Backend.Migrations
                 name: "Tags");
 
             migrationBuilder.DropTable(
+                name: "QRCodes");
+
+            migrationBuilder.DropTable(
                 name: "Units");
 
             migrationBuilder.DropTable(
                 name: "Status");
+
+            migrationBuilder.DropTable(
+                name: "Intents");
         }
     }
 }

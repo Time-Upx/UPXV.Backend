@@ -13,7 +13,7 @@ public class CreateTagEndpoint : IEndpoint
    public void MapEndpoint (IEndpointRouteBuilder app) =>
       app.MapPost("", (TagCreateDTO dto, UPXV_Context context, IValidator<TagCreateDTO> validator) =>
       {
-         if (validator.TryValidate(dto, out ValidationResult result))
+         if (!validator.TryValidate(dto, out ValidationResult result))
             return Problems.Validation(result.Errors);
 
          Tag tag = dto.BuildEntity();

@@ -14,10 +14,13 @@ public class UPXV_Context : DbContext
    public DbSet<Tag> Tags { get; set; }
    public DbSet<Unit> Units { get; set; }
    public DbSet<QRCode> QRCodes { get; set; }
+   public DbSet<QRCodeArgument> QRCodeArguments { get; set; }
    public DbSet<Intent> Intents { get; set; }
+   public DbSet<IntentParameter> IntentParameters { get; set; }
    protected override void OnModelCreating (ModelBuilder builder)
    {
       builder.AutoIncrementColumns();
+      builder.ApplyConfiguration(new IntentParameterMapping());
       builder.ApplyConfiguration(new ConsumableMapping());
       builder.ApplyConfiguration(new PatrimonyMapping());
       builder.ApplyConfiguration(new StatusMapping());

@@ -17,7 +17,7 @@ public class ExportQRCodeEndpoint : IEndpoint
 {
    public void MapEndpoint (IEndpointRouteBuilder app) =>
       app.MapPost("/{id}/export", (
-         string id,
+         int id,
          QRCodeExportDTO dto,
          QRCodeConfiguration qrcodeConfig,
          ApplicationConfiguration appConfig,
@@ -31,7 +31,7 @@ public class ExportQRCodeEndpoint : IEndpoint
             return Problems.Validation(result.Errors);
 
          string url = (appConfig.ClientBaseURL + Routes.QRCodes.DETAIL_REQUEST)
-            .Replace("{id}", qrcode.Id);
+            .Replace("{id}", qrcode.Id.ToString());
 
          var writer = new BarcodeWriter<SKBitmap>
          {

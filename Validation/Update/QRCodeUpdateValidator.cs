@@ -10,9 +10,9 @@ public class QRCodeUpdateValidator : AbstractValidator<QRCodeUpdateDTO>
    public QRCodeUpdateValidator (UPXV_Context context)
    { 
       RuleFor(dto => dto.IntentId)
-         .GreaterThan(0).WithMessage("O id da unidade deve ser maior que zero")
-         .Must(id => context.Exists<Unit>(id))
-         .WithMessage("Unidade não existe")
+         .GreaterThan(0).WithMessage("O id da Intenção deve ser maior que zero")
+         .Must(id => context.Exists<Intent>(id))
+         .WithMessage("Intenção não existe")
          .Unless(dto => dto.IntentId is null);
 
       RuleFor(dto => dto.UsageLimit)

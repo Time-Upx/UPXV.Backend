@@ -55,7 +55,6 @@ public class Routes
          { new ListQRCodesEndpoint()   },
          //{ new CopyQRCodeAction()    },
          { new GetQRCodeEndpoint()     },
-         { new GetQRCodeEndpoint()     },
       } },
       { Status.GROUP, new() {
          { new CreateStatusEndpoint() },
@@ -92,15 +91,15 @@ public class Routes
       public const string GROUP = "Consumables";
       public const string LIST_PAGE = "consumables";
       public const string DETAIL_PAGE = "consumables/{id}";
-      public const string TAKE_ACTION = "consumables/{id}/take?amount={amount}";
-      public const string ADD_ACTION = "consumables/{id}/add?amount={amount}";
+      public const string TAKE_ACTION = "api/consumables/{id}/take?amount={amount}";
+      public const string ADD_ACTION = "api/consumables/{id}/add?amount={amount}";
    }
    public static class Patrimonies
    {
       public const string GROUP = "Patrimonies";
       public const string LIST_PAGE = "patrimonies";
       public const string DETAIL_PAGE = "patrimonies/{id}";
-      public const string SWITCH_STATUS_ACTION = "patrimonies/{id}/switch-status?statusId={statusId}";
+      public const string SWITCH_STATUS_ACTION = "api/patrimonies/{id}/switch-status?statusId={statusId}";
    }
    public static class Units
    {
@@ -125,7 +124,7 @@ public class Routes
       public const string GROUP = "QRCodes";
       public const string LIST_PAGE = "qrcodes";
       public const string DETAIL_PAGE = "qrcodes/{id}";
-      public const string DETAIL_REQUEST = "qrcodes/{id}";
+      public const string DETAIL_REQUEST = "api/qrcodes/{id}";
    }
    public static class Intents
    {

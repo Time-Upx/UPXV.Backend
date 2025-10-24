@@ -16,6 +16,7 @@ public class GetStatusEndpoint : IEndpoint
          context.LoadRequirements(status);
          return Results.Ok(StatusDetailDTO.Of(status));
       })
+      .WithDescription("Detalha os dados do Status")
       .Produces<StatusDetailDTO>(StatusCodes.Status200OK)
       .Produces<EntityNotFoundDetails>(StatusCodes.Status404NotFound);
 }

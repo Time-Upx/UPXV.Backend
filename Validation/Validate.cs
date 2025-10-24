@@ -24,6 +24,6 @@ public static class Validate
          return true;
       }
       result = null!;
-      return true;
+      return false;
    }
 }

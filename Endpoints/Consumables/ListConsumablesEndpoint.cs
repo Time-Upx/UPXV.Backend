@@ -16,7 +16,7 @@ public class ListConsumablesEndpoint : IEndpoint
       {
          if (Validate.TryFails(out ValidationResult result,
             ( pageIndex < 0, nameof(pageIndex), "Número da página não pode ser negativo", pageIndex ),
-            ( pageSize < 0, nameof(pageSize), "Tamanho da página não pode ser negativo", pageSize ) ))
+            ( pageSize <= 0, nameof(pageSize), "Tamanho da página não pode ser zero ou negativo", pageSize ) ))
             return Problems.Validation(result.Errors);
 
          IEnumerable<ConsumableListDTO> page = context.Consumables

@@ -14,28 +14,36 @@ public class CreateQRCodeEndpoint : IEndpoint
    public void MapEndpoint (IEndpointRouteBuilder app) =>
       app.MapPost("", (QRCodeCreateDTO dto, UPXV_Context context, ApplicationConfiguration appConfig, IValidator<QRCodeCreateDTO> validator) =>
       {
-         if (!validator.TryValidate(dto, out ValidationResult result))
-            return Problems.Validation(result.Errors);
+         if (!validator.TryValidate(dto, out ValidationResult validationResult))
+            return Problems.Validation(validationResult.Errors);
 
-         QRCode qrcode = dto.BuildEntity();
+         Intent intent = context.Intents.Find(dto.IntentId)!;
+         intent.Parameters = context.IntentParameters
+            .Where(ip => ip.IntentId == intent.Id)
+            .ToList();
+
+         if (!dto.TryBuildEntity(intent, dto.IntentArguments, appConfig, out QRCode qrcode, out string url, out ValidationResult entityResult))
+            return Results.UnprocessableEntity(entityResult.Errors);
+
+         qrcode.Arguments = dto.IntentArguments
+            .Select(kv => new QRCodeArgument()
+            {
+               QRCode = qrcode,
+               Parameter = kv.Key,
+               Value = kv.Value
+            })
+            .ToList();
 
          context.Add(qrcode);
          context.SaveChanges();
          context.LoadRequirements(qrcode);
-
-         var urlAttempt = qrcode.GetUrl(appConfig.ClientBaseURL);
-
-         if (urlAttempt.TryGetFailure(out Exception failure)) 
-            return Problems.Error(failure);
-
-         var qrCodeDetail = QRCodeDetailDTO.Of(qrcode);
-
-         qrCodeDetail.Url = urlAttempt.GetSuccessValueOrThrow();
-
-         return Results.Ok(qrCodeDetail);
+         
+         return Results.Ok(QRCodeDetailDTO.Of(qrcode, url));
       })
-      .WithDescription("Salva um novo QRCode no banco de dados")
+      .WithDescription("Salva um novo QRCode no banco de dados. " +
+         "Pode retornar erro (422) se os argumentos passados para a Intenção não forem adequados")
       .Produces<QRCodeDetailDTO>(StatusCodes.Status200OK)
       .Produces<List<ValidationFailure>>(StatusCodes.Status400BadRequest)
-      .Produces(StatusCodes.Status500InternalServerError);
+      .Produces<List<ValidationFailure>>(StatusCodes.Status422UnprocessableEntity);
+
 }

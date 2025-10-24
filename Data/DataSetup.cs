@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
 using UPXV.Backend.Data.Seeds;
+using UPXV.Backend.Entities;
 
 namespace UPXV.Backend.Data;
 
@@ -50,6 +51,14 @@ public class DataSetup
 
       if (!context.Tags.Any())
          context.Tags.AddRange(TagSeeds.Data);
+
+      foreach (var intent in context.Intents)
+         context.Remove(intent);
+
+      foreach (var intentParameter in context.IntentParameters)
+         context.Remove(intentParameter);
+
+      context.AddRange(IntentSeeds.Data);
 
       context.SaveChanges();
    }

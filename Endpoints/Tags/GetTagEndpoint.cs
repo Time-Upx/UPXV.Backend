@@ -16,6 +16,7 @@ public class GetTagEndpoint : IEndpoint
          context.LoadRequirements(tag);
          return Results.Ok(TagDetailDTO.Of(tag));
       })
+      .WithDescription("Detalha os dados da Tag")
       .Produces<TagDetailDTO>(StatusCodes.Status200OK)
       .Produces<EntityNotFoundDetails>(StatusCodes.Status404NotFound);
 }

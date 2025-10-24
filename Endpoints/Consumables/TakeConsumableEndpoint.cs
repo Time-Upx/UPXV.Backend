@@ -28,7 +28,7 @@ public class TakeConsumableEndpoint : IEndpoint
 
          return Results.Ok(ConsumableDetailDTO.Of(consumable));
       })
-      .WithDescription("Deminishes the quantity of the consumable by the amount passed in the query")
+      .WithDescription("Diminui a quantidade do Consumível com o valor passado")
       .Produces<ConsumableDetailDTO>(StatusCodes.Status200OK)
       .Produces<ValidationFailure>(StatusCodes.Status400BadRequest)
       .Produces<EntityNotFoundDetails>(StatusCodes.Status404NotFound);

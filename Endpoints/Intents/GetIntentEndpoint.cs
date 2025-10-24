@@ -16,6 +16,10 @@ public class GetIntentEndpoint : IEndpoint
          context.LoadRequirements(intent);
          return Results.Ok(IntentDetailDTO.Of(intent));
       })
+      .WithDescription("""
+         Detalha os dados da Intenção.
+         Tipo 1 é 'Redirecionamento' e 2 é 'Ação'.
+         """)
       .Produces<IntentDetailDTO>(StatusCodes.Status200OK)
       .Produces<EntityNotFoundDetails>(StatusCodes.Status404NotFound);
 }

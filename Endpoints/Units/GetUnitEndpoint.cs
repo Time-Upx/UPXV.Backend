@@ -16,6 +16,7 @@ public class GetUnitEndpoint : IEndpoint
          context.LoadRequirements(unit);
          return Results.Ok(UnitDetailDTO.Of(unit));
       })
+      .WithDescription("Detalha os dados da Unidade")
       .Produces<UnitDetailDTO>(StatusCodes.Status200OK)
       .Produces<EntityNotFoundDetails>(StatusCodes.Status404NotFound);
 }

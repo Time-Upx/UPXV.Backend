@@ -1,7 +1,6 @@
 ﻿using UPXV.Backend.Common;
 using UPXV.Backend.Data;
 using UPXV.Backend.DTOs.Consumables;
-using UPXV.Backend.DTOs.Units;
 using UPXV.Backend.Entities;
 
 namespace UPXV.Backend.Endpoints.Consumables;
@@ -21,6 +20,6 @@ public class DeleteConsumableEndpoint : IEndpoint
          return Results.Ok(ConsumableDetailDTO.Of(consumable));
       })
       .WithDescription("Remove o Consumível do banco de dados")
-      .Produces<UnitDetailDTO>(StatusCodes.Status200OK)
+      .Produces<ConsumableDetailDTO>(StatusCodes.Status200OK)
       .Produces<EntityNotFoundDetails>(StatusCodes.Status404NotFound);
 }

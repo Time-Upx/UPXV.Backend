@@ -16,7 +16,7 @@ public class GetConsumableEndpoint : IEndpoint
          context.LoadRequirements(consumable);
          return Results.Ok(ConsumableDetailDTO.Of(consumable));
       })
-      .WithDescription("Gets a consumable by its id")
+      .WithDescription("Detalha os dados do Consumível")
       .Produces<ConsumableDetailDTO>(StatusCodes.Status200OK)
       .Produces<EntityNotFoundDetails>(StatusCodes.Status404NotFound);
 }

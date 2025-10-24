@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using FluentValidation.Results;
-using System.ComponentModel.DataAnnotations;
 using UPXV.Backend.Common;
 using UPXV.Backend.Data;
 using UPXV.Backend.DTOs.Consumables;
@@ -15,7 +14,7 @@ public class CreateConsumableEndpoint : IEndpoint
    public void MapEndpoint (IEndpointRouteBuilder app) =>
       app.MapPost("", (ConsumableCreateDTO dto, UPXV_Context context, IValidator<ConsumableCreateDTO> validator) =>
       {
-         if (validator.TryValidate(dto, out var result))
+         if (!validator.TryValidate(dto, out ValidationResult result))
             return Problems.Validation(result.Errors);
 
          ICollection<Tag> tags = context.Tags

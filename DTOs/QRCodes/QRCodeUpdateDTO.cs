@@ -9,6 +9,7 @@ public record QRCodeUpdateDTO
    public string? Description { get; set; }
    public string? Password { get; set; }
    public int? UsageLimit { get; set; }
+   public IDictionary<string, string>? IntentArguments { get; set; } = new Dictionary<string, string>();
 
    public void UpdateEntity(QRCode qrcode)
    {
@@ -17,5 +18,6 @@ public record QRCodeUpdateDTO
       if (Description is not null) qrcode.Description = Description;
       if (Password is not null) qrcode.Password = Password;
       if (UsageLimit is not null) qrcode.UsageLimit = UsageLimit!.Value;
+      if (IntentArguments is not null) qrcode.Arguments = IntentArguments.ToEntities(qrcode.Id, qrcode);
    }
 }
