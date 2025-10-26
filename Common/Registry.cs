@@ -11,7 +11,15 @@ public static class Registry
    {
       new DataSetup().AddMySQL(builder);
 
-      builder.Services.AddCors();
+      builder.Services.AddCors(o =>
+      {
+         o.AddDefaultPolicy(p =>
+         {
+            p.AllowAnyHeader();
+            p.AllowAnyMethod();
+            p.AllowAnyOrigin();
+         });
+      });
       builder.Services.AddEndpointsApiExplorer();
       builder.Services.AddSwaggerGen();
 
@@ -25,6 +33,9 @@ public static class Registry
    public static void PrepareApplication(WebApplication app)
    {
       new DataSetup().InitializeDatabase(app);
+
+      app.UseCors();
+
       new Routes().MapEndpoints(app);
 
       app.UseHttpsRedirection();

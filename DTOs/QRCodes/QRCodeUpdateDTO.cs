@@ -18,6 +18,5 @@ public record QRCodeUpdateDTO
       if (Description is not null) qrcode.Description = Description;
       if (Password is not null) qrcode.Password = Password;
       if (UsageLimit is not null) qrcode.UsageLimit = UsageLimit!.Value;
-      if (IntentArguments is not null) qrcode.Arguments = IntentArguments.ToEntities(qrcode.Id, qrcode);
    }
 }
