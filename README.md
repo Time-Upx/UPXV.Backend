@@ -1,9 +1,9 @@
-# UPXV.Backend
+# STOCKFY - API
 
-Este repositório contém o código fonte desenvolvido para a API do projeto de extensão Stockfy, da disciplina UPX V.
+Sistema completo para gerenciamento de Ativos desenvolvido para o projeto de extensão UPXV do Centro Universitário FACENS.
 
 #### Arquitetura
-Ela consiste numa API Mínima construída em cima do framework ASP.NET Core e .NET 8, e escrita em C#, por ser a _stack_ mais familiarizada pelo desenvolvedor.
+Esta aplicação consiste numa API Mínima construída em cima do framework ASP.NET Core e .NET 8, e escrita em C#, por ser a _stack_ mais familiarizada pelo desenvolvedor.
 Inicialmente, tentou-se implementar a arquitetura em camadas (Serviços, Repositórios, Controladores...), mas os planos precisaram ser mudados para permitir uma prototipação mais veloz.
 Desse modo, a lógica foi separada end-point por end-point seguindo o conceito das API mínimas.
 Concomitantemente, a fim de simplificar o gerenciamento de dependências e referências, um único módulo (Assembly) foi criado.
