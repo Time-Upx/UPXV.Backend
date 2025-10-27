@@ -19,4 +19,4 @@ Desenvolvida por: [Gabriel Rosa da Silva, RA 237069](https://github.com/GabrielR
 
 #### Trello
 Link: [Stockfy](https://trello.com/b/MviKx4u8/upx-v-stockfy)  
-Print: ![Print do Trello do Projeot](Trello.png)
+Print: ![Print do Trello do Projeto](Trello.png)
