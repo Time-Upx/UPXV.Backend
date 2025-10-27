@@ -16,3 +16,7 @@ Para a validação de fluxos de informação, foi utilizada a biblioteca FluentV
 Para a geração dos códigos QR, usou-se do pacote ZXing para .NET, juntamente com o renderizador de imagem do SkiaSharp, ambos de fácil uso e disponibilidade.
 
 Desenvolvida por: [Gabriel Rosa da Silva, RA 237069](https://github.com/GabrielRosa835)
+
+#### Trello
+Link: [Stockfy](https://trello.com/b/MviKx4u8/upx-v-stockfy)
+Print: ![Print do Trello do Projeot](docs/assets/Trello.png)
