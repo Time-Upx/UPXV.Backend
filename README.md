@@ -15,4 +15,4 @@ Os dados são persistidos num banco MySQL consolidado com a ORM do Entity Framew
 Para a validação de fluxos de informação, foi utilizada a biblioteca FluentValidation, cuja fama e facilidade de uso constituiram os motivos de sua escolha para a aplicação.
 Para a geração dos códigos QR, usou-se do pacote ZXing para .NET, juntamente com o renderizador de imagem do SkiaSharp.
 
-Desenvolvida por: (Gabriel Rosa da Silva, RA 237069)[https://github.com/GabrielRosa835]
+Desenvolvida por: [Gabriel Rosa da Silva, RA 237069](https://github.com/GabrielRosa835)
