@@ -6,7 +6,8 @@ namespace UPXV.Backend.Data.Seeds;
 public static class IntentSeeds
 {
    public static IntentParameter Id (int intentId) => new (intentId, "id");
-   public static Intent[] Data => [
+   public static Intent[] Data => 
+   [
       ConsumableList, ConsumableDetail, ConsumableAdd, ConsumableTake,
       PatrimonyList, PatrimonyDetail, PatrimonySwitchStatus,
       QRCodeList, QRCodeDetail,
@@ -14,7 +15,7 @@ public static class IntentSeeds
       UnitList, UnitDetail,
       TagList, TagDetail,
       ItemList,
-      ];
+   ];
 
    public static readonly Intent TagList = new()
    {
@@ -129,7 +130,7 @@ public static class IntentSeeds
    public static readonly Intent ConsumableAdd = new()
    {
       Id = 12,
-      Type = IntentType.Action,
+      Type = IntentType.Post,
       Name = "Dar Entrada de Consumível",
       Description = "",
       UrlTemplate = Routes.Consumables.ADD_ACTION,
@@ -139,7 +140,7 @@ public static class IntentSeeds
    public static readonly Intent ConsumableTake = new()
    {
       Id = 13,
-      Type = IntentType.Action,
+      Type = IntentType.Post,
       Name = "Fazer Retirada de Consumível",
       Description = "",
       UrlTemplate = Routes.Consumables.TAKE_ACTION,
@@ -169,7 +170,7 @@ public static class IntentSeeds
    public static readonly Intent PatrimonySwitchStatus = new()
    {
       Id = 16,
-      Type = IntentType.Action,
+      Type = IntentType.Post,
       Name = "Alterar Status de Patrimônio",
       Description = "",
       UrlTemplate = Routes.Patrimonies.SWITCH_STATUS_ACTION,

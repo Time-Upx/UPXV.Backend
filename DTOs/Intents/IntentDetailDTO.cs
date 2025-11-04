@@ -5,7 +5,7 @@ namespace UPXV.Backend.DTOs.Intents;
 public record IntentDetailDTO
 {
    public int Id { get; set; }
-   public required IntentType Type { get; set; }
+   public required string Type { get; set; }
    public required string Name { get; set; }
    public required string Description { get; set; }
    public string[] Parameters { get; set; } = [];
@@ -13,7 +13,7 @@ public record IntentDetailDTO
    public static IntentDetailDTO Of (Intent intent) => new()
    {
       Id = intent.Id,
-      Type = intent.Type,
+      Type = Enum.GetName(intent.Type) ?? Enum.GetName(IntentType.None)!,
       Name = intent.Name,
       Description = intent.Description,
       Parameters = intent.Parameters.Select(ip => ip.Parameter).ToArray(),

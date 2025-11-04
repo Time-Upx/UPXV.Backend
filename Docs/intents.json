@@ -1,0 +1,171 @@
+[
+   {
+      "id": 1,
+      "name": "Página de Tags",
+      "type": "Redirect",
+      "description": "Exibe a lista de todas as tags usadas para categorização de itens.",
+      "parameters": []
+   },
+   {
+      "id": 2,
+      "name": "Página de Detalhamento de Tag",
+      "type": "Redirect",
+      "description": "Apresenta informações detalhadas sobre uma tag específica.",
+      "parameters": [
+         {
+            "name": "id",
+            "type": "int"
+         }
+      ]
+   },
+   {
+      "id": 3,
+      "name": "Página de Items",
+      "type": "Redirect",
+      "description": "Exibe a lista geral de todos os itens cadastrados (sejam eles patrimônio ou consumível).",
+      "parameters": []
+   },
+   {
+      "id": 4,
+      "name": "Página de Códigos QR",
+      "type": "Redirect",
+      "description": "Exibe a lista de todos os Códigos QR gerados e seus respectivos vínculos.",
+      "parameters": []
+   },
+   {
+      "id": 5,
+      "name": "Página de Detalhamento de Código QR",
+      "type": "Redirect",
+      "description": "Apresenta informações e a ação vinculada a um Código QR específico.",
+      "parameters": [
+         {
+            "name": "id",
+            "type": "int"
+         }
+      ]
+   },
+   {
+      "id": 6,
+      "name": "Página de Status",
+      "type": "Redirect",
+      "description": "Exibe a lista de todos os possíveis status de ativos.",
+      "parameters": []
+   },
+   {
+      "id": 7,
+      "name": "Página de Detalhamento de Status",
+      "type": "Redirect",
+      "description": "Apresenta informações detalhadas sobre um status específico.",
+      "parameters": [
+         {
+            "name": "id",
+            "type": "int"
+         }
+      ]
+   },
+   {
+      "id": 8,
+      "name": "Página de Unidades",
+      "type": "Redirect",
+      "description": "Exibe a lista de todas as unidades de medida registradas.",
+      "parameters": []
+   },
+   {
+      "id": 9,
+      "name": "Página de Detalhamento de Unidade",
+      "type": "Redirect",
+      "description": "Apresenta informações detalhadas sobre uma unidade específica.",
+      "parameters": [
+         {
+            "name": "id",
+            "type": "int"
+         }
+      ]
+   },
+   {
+      "id": 10,
+      "name": "Página de Consumíveis",
+      "type": "Redirect",
+      "description": "Exibe a lista completa de todos os consumíveis disponíveis.",
+      "parameters": []
+   },
+   {
+      "id": 11,
+      "name": "Página de Detalhamento de Consumível",
+      "type": "Redirect",
+      "description": "Apresenta informações detalhadas e específicas sobre um consumível individual.",
+      "parameters": [
+         {
+            "name": "id",
+            "type": "int"
+         }
+      ]
+   },
+   {
+      "id": 12,
+      "name": "Dar Entrada de Consumível",
+      "type": "Post",
+      "description": "Registra a adição de uma quantidade específica ao estoque de um consumível.",
+      "parameters": [
+         {
+            "name": "id",
+            "type": "int"
+         },
+         {
+            "name": "amount",
+            "type": "int"
+         }
+      ]
+   },
+   {
+      "id": 13,
+      "name": "Fazer Retirada de Consumível",
+      "type": "Post",
+      "description": "Registra a remoção de uma quantidade específica do estoque de um consumível.",
+      "parameters": [
+         {
+            "name": "id",
+            "type": "int"
+         },
+         {
+            "name": "amount",
+            "type": "int"
+         }
+      ]
+   },
+   {
+      "id": 14,
+      "name": "Página de Patrimônios",
+      "type": "Redirect",
+      "description": "Exibe a lista de todos os ativos patrimoniais registrados no sistema.",
+      "parameters": []
+   },
+   {
+      "id": 15,
+      "name": "Página de Detalhamento de Patrimônio",
+      "type": "Redirect",
+      "description": "Apresenta informações detalhadas e específicas sobre um patrimônio individual.",
+      "parameters": [
+         {
+            "name": "id",
+            "type": "int"
+         }
+      ]
+   },
+   {
+      "id": 16,
+      "name": "Alterar Status de Patrimônio",
+      "type": "Post",
+      "description": "Muda o estado (e.g., ativo, em manutenção) de um patrimônio.",
+      "parameters": [
+         {
+            "name": "id",
+            "type": "int"
+         },
+         {
+            "name": "statusId",
+            "type": "int"
+         }
+      ]
+   }
+]
