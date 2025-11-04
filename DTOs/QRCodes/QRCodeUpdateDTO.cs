@@ -7,7 +7,7 @@ public record QRCodeUpdateDTO
    public int? IntentId { get; set; }
    public string? Name { get; set; }
    public string? Description { get; set; }
-   public string? Password { get; set; }
+   public string? ActivationCode { get; set; }
    public int? UsageLimit { get; set; }
    public IDictionary<string, string>? IntentArguments { get; set; } = new Dictionary<string, string>();
 
@@ -16,7 +16,7 @@ public record QRCodeUpdateDTO
       if (IntentId is not null) qrcode.IntentId = IntentId!.Value;
       if (Name is not null) qrcode.Name = Name;
       if (Description is not null) qrcode.Description = Description;
-      if (Password is not null) qrcode.Password = Password;
+      if (ActivationCode is not null) qrcode.ActivationCode = ActivationCode;
       if (UsageLimit is not null) qrcode.UsageLimit = UsageLimit!.Value;
    }
 }

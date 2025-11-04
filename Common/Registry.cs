@@ -9,7 +9,7 @@ public static class Registry
 {
    public static void ArrangeDependencies (WebApplicationBuilder builder)
    {
-      new DataSetup().AddMySQL(builder);
+      DataSetup.AddMySQL(builder);
 
       builder.Services.AddCors(o =>
       {
@@ -32,11 +32,11 @@ public static class Registry
 
    public static void PrepareApplication(WebApplication app)
    {
-      new DataSetup().InitializeDatabase(app);
+      DataSetup.InitializeDatabase(app);
 
       app.UseCors();
 
-      new Routes().MapEndpoints(app);
+      Routes.MapEndpoints(app);
 
       app.UseHttpsRedirection();
       app.UseDeveloperExceptionPage();

@@ -10,7 +10,7 @@ public record QRCodeCreateDTO
    public string? Name { get; set; }
    public string? Description { get; set; }
    public DateTime? Expiration { get; set; }
-   public string? Password { get; set; }
+   public string? ActivationCode { get; set; }
    public int? UsageLimit { get; set; }
    public Dictionary<string, string> IntentArguments { get; set; } = [];
 
@@ -31,7 +31,7 @@ public record QRCodeCreateDTO
          Name = Name,
          Description = Description,
          Expiration = Expiration,
-         Password = Password,
+         ActivationCode = ActivationCode,
          UsageLimit = UsageLimit,
       };
 

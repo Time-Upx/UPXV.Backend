@@ -1,29 +1,35 @@
-﻿namespace UPXV.Backend.Endpoints.QRCodes;
+﻿
+using FluentValidation.Results;
 
-//public static class CopyQRCodeAction
-//{
-//   public static IResult MapEndpoint (string id, UPXV_Context context)
-//   {
-//      return Execute(id, context).Either(
-//         Results.Ok,
-//         failure => failure switch
-//         {
-//            EntityNotFoundException<QRCode> e => Results.NotFound(e),
-//            Exception e => Results.Problem(e.Message, statusCode: 500)
-//         });
-//   }
-//   public static Attempt<QRCodeDetailDTO, Exception> Execute(string id, UPXV_Context context)
-//   {
-//      QRCode? qrcode = context.QRCodes.Find(id);
+using UPXV.Backend.Common;
+using UPXV.Backend.Common.Configuration;
+using UPXV.Backend.Data;
+using UPXV.Backend.DTOs.QRCodes;
+using UPXV.Backend.Entities;
 
-//      if (qrcode is null) return new EntityNotFoundException<QRCode>(id: id);
+namespace UPXV.Backend.Endpoints.QRCodes;
 
-//      QRCode other = qrcode.Clone(Guid.NewGuid().ToString());
+public class CopyQRCodeEndpoint : IEndpoint
+{
+   public void MapEndpoint (IEndpointRouteBuilder app) =>
+      app.MapPost("/{id}/copy", (int id, UPXV_Context context, ApplicationConfiguration appConfig) =>
+      {
+         if (!context.TryFind(out QRCode qrcode, id))
+            return Problems.NotFound<QRCode>(id);
 
-//      context.Add(other);
-//      context.SaveChanges();
-//      context.LoadRequirements(other);
+         QRCode copy = qrcode.CopyToNew();
+         context.LoadRequirements(copy);
 
-//      return QRCodeDetailDTO.Of(other);
-//   }
-//}
+         if (!QRCodeDetailDTO.TryCreate(qrcode, appConfig, out var details, out var problem))
+            return Results.UnprocessableEntity(problem.Errors);
+
+         context.Add(copy);
+         context.SaveChanges();
+
+         return Results.Ok(details);
+      })
+      .WithDescription("Cria uma cópia do código QR e o salva no banco como uma nova entidade")
+      .Produces<QRCodeDetailDTO>(StatusCodes.Status200OK)
+      .Produces<EntityNotFoundDetails>(StatusCodes.Status404NotFound)
+      .Produces<List<ValidationFailure>>(StatusCodes.Status422UnprocessableEntity);
+}

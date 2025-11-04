@@ -12,7 +12,7 @@ using UPXV.Backend.Data;
 namespace UPXV.Backend.Migrations
 {
     [DbContext(typeof(UPXV_Context))]
-    [Migration("20251024002913_Initial")]
+    [Migration("20251103235912_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -184,6 +184,9 @@ namespace UPXV.Backend.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("ActivationCode")
+                        .HasColumnType("longtext");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
@@ -198,9 +201,6 @@ namespace UPXV.Backend.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(255)");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("longtext");
 
                     b.Property<int>("TimesUsed")
                         .HasColumnType("int");

@@ -15,7 +15,7 @@ public static class RouteExtensions
 }
 public class Routes
 {
-   public void MapEndpoints (IEndpointRouteBuilder app)
+   public static void MapEndpoints (IEndpointRouteBuilder app)
    {
       foreach (var group in _routes)
       {
@@ -28,33 +28,35 @@ public class Routes
       }
    }
 
-   private Dictionary<string, List<IEndpoint>> _routes = new()
+   private static Dictionary<string, List<IEndpoint>> _routes = new()
    {
       { Consumables.GROUP, new() { 
          { new CreateConsumableEndpoint() },
          { new DeleteConsumableEndpoint() },
          { new UpdateConsumableEndpoint() },
-         { new ListConsumablesEndpoint()  },
-         { new AddConsumableEndpoint()    },
-         { new GetConsumableEndpoint()    },
-         { new TakeConsumableEndpoint()     },
+         { new ListConsumablesEndpoint() },
+         { new TakeConsumableEndpoint() },
+         { new AddConsumableEndpoint() },
+         { new GetConsumableEndpoint() },
       } },
       { Patrimonies.GROUP, new() {
-         { new SwitchPatrimonyStatusEndpoint()  },
-         { new ListPatrimoniesEndpoint()        },
-         { new CreatePatrimonyEndpoint()        },
-         { new DeletePatrimonyEndpoint()        },
-         { new UpdatePatrimonyEndpoint()        },
-         { new GetPatrimonyEndpoint()           },
+         { new SwitchPatrimonyStatusEndpoint() },
+         { new ListPatrimoniesEndpoint() },
+         { new CreatePatrimonyEndpoint() },
+         { new DeletePatrimonyEndpoint() },
+         { new UpdatePatrimonyEndpoint() },
+         { new GetPatrimonyEndpoint() },
       } },
       { QRCodes.GROUP, new() {
-         { new CreateQRCodeEndpoint()  },
-         { new DeleteQRCodeEndpoint()  },
-         { new UpdateQRCodeEndpoint()  },
-         { new ExportQRCodeEndpoint()  },
-         { new ListQRCodesEndpoint()   },
-         //{ new CopyQRCodeAction()    },
-         { new GetQRCodeEndpoint()     },
+         { new GenerateQRCodeActivationCodeEndpoint() },
+         { new IncreaseQRCodeUseEndpoint() },
+         { new CreateQRCodeEndpoint() },
+         { new DeleteQRCodeEndpoint() },
+         { new UpdateQRCodeEndpoint() },
+         { new ExportQRCodeEndpoint() },
+         { new ListQRCodesEndpoint() },
+         { new CopyQRCodeEndpoint() },
+         { new GetQRCodeEndpoint() },
       } },
       { Status.GROUP, new() {
          { new CreateStatusEndpoint() },

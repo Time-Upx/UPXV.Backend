@@ -18,7 +18,7 @@ public class QRCode : IHasRequirements
    public DateTime CreatedAt { get; set; } = DateTime.Now;
    public DateTime? Expiration { get; set; }
    public bool HasExpired => DateTime.Now > Expiration;
-   public string? Password { get; set; }
+   public string? ActivationCode { get; set; }
    public int? UsageLimit { get; set; }
    public int TimesUsed { get; set; }
    public bool HasReachedUsageLimit => TimesUsed > UsageLimit;  
@@ -31,7 +31,7 @@ public class QRCode : IHasRequirements
       Name = Name,
       Description = Description,
       Expiration = Expiration is null ? null : DateTime.Now + (Expiration - CreatedAt),
-      Password = Password,
+      ActivationCode = ActivationCode,
       UsageLimit = UsageLimit,
       TimesUsed = 0,
       Arguments = Arguments.CopyToNew()

@@ -181,6 +181,9 @@ namespace UPXV.Backend.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("ActivationCode")
+                        .HasColumnType("longtext");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
@@ -195,9 +198,6 @@ namespace UPXV.Backend.Migrations
 
                     b.Property<string>("Name")
                         .HasColumnType("varchar(255)");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("longtext");
 
                     b.Property<int>("TimesUsed")
                         .HasColumnType("int");

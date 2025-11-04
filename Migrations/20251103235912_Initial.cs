@@ -121,7 +121,7 @@ namespace UPXV.Backend.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     Expiration = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    Password = table.Column<string>(type: "longtext", nullable: true)
+                    ActivationCode = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     UsageLimit = table.Column<int>(type: "int", nullable: true),
                     TimesUsed = table.Column<int>(type: "int", nullable: false)
