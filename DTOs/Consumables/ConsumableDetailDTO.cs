@@ -8,6 +8,7 @@ public record ConsumableDetailDTO
 {
    public required int Id { get; set; }
    public required string Name { get; set; }
+   public string? Description { get; set; }
    public required double Quantity { get; set; }
    public required IEnumerable<TagListDTO> Tags { get; set; }
    public required UnitDetailDTO Unit { get; set; }
@@ -15,6 +16,7 @@ public record ConsumableDetailDTO
    {
       Id = consumable.Id,
       Name = consumable.Name,
+      Description = consumable.Description,
       Quantity = consumable.Quantity,
       Tags = consumable.Tags.Select(TagListDTO.Of),
       Unit = UnitDetailDTO.Of(consumable.Unit!),

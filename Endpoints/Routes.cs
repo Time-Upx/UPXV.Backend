@@ -17,6 +17,8 @@ public class Routes
 {
    public static void MapEndpoints (IEndpointRouteBuilder app)
    {
+      app.MapGet("/", () => "UPXV Backend is running!");
+
       foreach (var group in _routes)
       {
          var route = app
@@ -118,15 +120,15 @@ public class Routes
    public static class Status
    {
       public const string GROUP = "Status";
-      public const string LIST_PAGE = "status";
-      public const string DETAIL_PAGE = "status/{id}";
+      public const string LIST_PAGE = "statuses";
+      public const string DETAIL_PAGE = "statuses/{id}";
    }
    public static class QRCodes
    {
       public const string GROUP = "QRCodes";
       public const string LIST_PAGE = "qrcodes";
       public const string DETAIL_PAGE = "qrcodes/{id}";
-      public const string DETAIL_REQUEST = "api/qrcodes/{id}";
+      public const string DETAIL_REQUEST = "qrcodes/{id}/read";
    }
    public static class Intents
    {

@@ -51,6 +51,9 @@ public static class DataSetup
       if (!context.Tags.Any())
          context.Tags.AddRange(TagSeeds.Data);
 
+      if (!context.QRCodes.Any())
+         context.QRCodes.AddRange(QRCodeSeeds.Data);
+
       foreach (var intent in context.Intents)
          context.Remove(intent);
 

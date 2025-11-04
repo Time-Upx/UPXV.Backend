@@ -95,7 +95,11 @@ public static class QRCodeExtensions
       string baseUrl = qrcode.Intent.Type switch
       {
          IntentType.Redirect => appConfig.ClientBaseURL,
-         IntentType.Action => appConfig.ServerBaseURL,
+         IntentType.Get => appConfig.ServerBaseURL,
+         IntentType.Post => appConfig.ServerBaseURL,
+         IntentType.Put => appConfig.ServerBaseURL,
+         IntentType.Delete => appConfig.ServerBaseURL,
+         IntentType.Patch => appConfig.ServerBaseURL,
          _ => throw new NotImplementedException(),
       };
       string url = baseUrl + "/" + qrcode.Intent!.UrlTemplate;
@@ -131,7 +135,11 @@ public static class QRCodeExtensions
       string baseUrl = intent.Type switch
       {
          IntentType.Redirect => appConfig.ClientBaseURL,
-         IntentType.Action => appConfig.ServerBaseURL,
+         IntentType.Get => appConfig.ServerBaseURL,
+         IntentType.Post => appConfig.ServerBaseURL,
+         IntentType.Put => appConfig.ServerBaseURL,
+         IntentType.Delete => appConfig.ServerBaseURL,
+         IntentType.Patch => appConfig.ServerBaseURL,
          _ => throw new NotImplementedException(),
       };
       string url = baseUrl + "/" + intent.UrlTemplate;
