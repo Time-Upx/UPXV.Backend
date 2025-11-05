@@ -7,7 +7,7 @@ namespace UPXV.Backend.DTOs.QRCodes;
 
 public record QRCodeDetailDTO
 {
-   public int Id { get; set; }
+   public required string Id { get; set; }
    public string? Url { get; set; }
    public IntentDetailDTO? Intent { get; set; }
    public string? Name { get; set; }

@@ -14,7 +14,7 @@ public class CopyQRCodeEndpoint : IEndpoint
    private const string _copySuffix = " - Cópia";
    private const int _copySuffixLength = 8;
    public void MapEndpoint (IEndpointRouteBuilder app) =>
-      app.MapPost("/{id}/copy", (int id, UPXV_Context context, ApplicationConfiguration appConfig) =>
+      app.MapPost("/{id}/copy", (string id, UPXV_Context context, ApplicationConfiguration appConfig) =>
       {
          if (!context.TryFind(out QRCode qrcode, id))
             return Problems.NotFound<QRCode>(id);

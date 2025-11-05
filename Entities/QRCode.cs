@@ -10,7 +10,7 @@ namespace UPXV.Backend.Entities;
 
 public class QRCode : IHasRequirements
 {
-   public int Id { get; set; }
+   public string Id { get; set; } = null!;
    public int IntentId { get; set; }
    public Intent? Intent { get; set; }
    public required string Name { get; set; }
@@ -64,7 +64,7 @@ public static class QRCodeExtensions
       return dict;
    }
 
-   public static List<QRCodeArgument> ToEntities (this IDictionary<string, string> arguments, int qrcodeId, QRCode? qrcode = null)
+   public static List<QRCodeArgument> ToEntities (this IDictionary<string, string> arguments, string qrcodeId, QRCode? qrcode = null)
    {
       return arguments.Select(kv => new QRCodeArgument()
       {

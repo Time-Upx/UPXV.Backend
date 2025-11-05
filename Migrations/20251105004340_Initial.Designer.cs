@@ -12,7 +12,7 @@ using UPXV.Backend.Data;
 namespace UPXV.Backend.Migrations
 {
     [DbContext(typeof(UPXV_Context))]
-    [Migration("20251104234436_Initial")]
+    [Migration("20251105004340_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -178,11 +178,8 @@ namespace UPXV.Backend.Migrations
 
             modelBuilder.Entity("UPXV.Backend.Entities.QRCode", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+                    b.Property<string>("Id")
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("ActivationCode")
                         .HasColumnType("longtext");
@@ -231,8 +228,9 @@ namespace UPXV.Backend.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("QRCodeId")
-                        .HasColumnType("int");
+                    b.Property<string>("QRCodeId")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Value")
                         .IsRequired()

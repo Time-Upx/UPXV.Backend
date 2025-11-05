@@ -8,7 +8,7 @@ namespace UPXV.Backend.Endpoints.QRCodes;
 public class IncreaseQRCodeUseEndpoint : IEndpoint
 {
    public void MapEndpoint (IEndpointRouteBuilder app) =>
-      app.MapPatch("{id}/increase-use", (int id, UPXV_Context context) =>
+      app.MapPatch("{id}/increase-use", (string id, UPXV_Context context) =>
       {
          if (!context.TryFind(out QRCode qrcode, id))
             return Problems.NotFound<QRCode>(id);

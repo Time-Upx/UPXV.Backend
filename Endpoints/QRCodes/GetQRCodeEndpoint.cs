@@ -11,7 +11,7 @@ namespace UPXV.Backend.Endpoints.QRCodes;
 public class GetQRCodeEndpoint : IEndpoint
 {
    public void MapEndpoint (IEndpointRouteBuilder app) =>
-      app.MapGet("/{id}", (int id, UPXV_Context context, ApplicationConfiguration appConfig) =>
+      app.MapGet("/{id}", (string id, UPXV_Context context, ApplicationConfiguration appConfig) =>
       {
          if (!context.TryFind(out QRCode qrcode, id))
             return Problems.NotFound<QRCode>(id);

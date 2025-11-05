@@ -14,7 +14,7 @@ namespace UPXV.Backend.Endpoints.QRCodes;
 public class UpdateQRCodeEndpoint : IEndpoint
 {
    public void MapEndpoint (IEndpointRouteBuilder app) =>
-      app.MapPut("/{id}", (int id, QRCodeUpdateDTO dto, UPXV_Context context, ApplicationConfiguration appConfig, IValidator<QRCodeUpdateDTO> validator) =>
+      app.MapPut("/{id}", (string id, QRCodeUpdateDTO dto, UPXV_Context context, ApplicationConfiguration appConfig, IValidator<QRCodeUpdateDTO> validator) =>
       {
          if (!context.TryFind(out QRCode qrcode, id))
             return Problems.NotFound<QRCode>(id);

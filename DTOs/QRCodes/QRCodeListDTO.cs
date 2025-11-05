@@ -5,7 +5,7 @@ namespace UPXV.Backend.DTOs.QRCodes;
 
 public record QRCodeListDTO
 {
-   public int Id { get; set; }
+   public required string Id { get; set; }
    public IntentListDTO? Intent { get; set; }
    public string? Name { get; set; }
    public bool HasExpired { get; set; }

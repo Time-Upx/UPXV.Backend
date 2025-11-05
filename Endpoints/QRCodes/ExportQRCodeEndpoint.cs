@@ -18,7 +18,7 @@ public class ExportQRCodeEndpoint : IEndpoint
 {
    public void MapEndpoint (IEndpointRouteBuilder app) =>
       app.MapPost("/{id}/export", (
-         int id,
+         string id,
          QRCodeExportDTO dto,
          QRCodeConfiguration qrcodeConfig,
          ApplicationConfiguration appConfig,

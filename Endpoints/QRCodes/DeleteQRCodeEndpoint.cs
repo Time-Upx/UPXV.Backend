@@ -10,7 +10,7 @@ namespace UPXV.Backend.Endpoints.QRCodes;
 public class DeleteQRCodeEndpoint : IEndpoint
 {
    public void MapEndpoint (IEndpointRouteBuilder app) =>
-      app.MapDelete("/{id}", (int id, UPXV_Context context, ApplicationConfiguration appConfig) =>
+      app.MapDelete("/{id}", (string id, UPXV_Context context, ApplicationConfiguration appConfig) =>
       {
          if (!context.TryFind(out QRCode qrcode, id))
             return Problems.NotFound<QRCode>(id);
