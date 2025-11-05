@@ -14,8 +14,9 @@ public static class QRCodeSeeds
    ];
 
    public static int cq = 0;
-   public static int ca = 0;
    public static int cqi => ++cq;
+
+   public static int ca = 0;
    public static int cai => ++ca;
 
    public static readonly QRCode QRCode_CaixaRegistradora = new()

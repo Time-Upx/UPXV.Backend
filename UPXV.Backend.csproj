@@ -9,6 +9,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Common\Exceptions\**" />
+	  <Content Remove="Common\Exceptions\**" />
+	  <EmbeddedResource Remove="Common\Exceptions\**" />
+	  <None Remove="Common\Exceptions\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="FluentValidation" Version="12.0.0" />
 		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.8">
@@ -22,7 +29,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Common\Exceptions\" />
 		<Folder Include="Migrations\" />
 	</ItemGroup>
 

@@ -11,20 +11,29 @@ namespace UPXV.Backend.Endpoints.QRCodes;
 
 public class CopyQRCodeEndpoint : IEndpoint
 {
+   private const string _copySuffix = " - Cópia";
+   private const int _copySuffixLength = 8;
    public void MapEndpoint (IEndpointRouteBuilder app) =>
       app.MapPost("/{id}/copy", (int id, UPXV_Context context, ApplicationConfiguration appConfig) =>
       {
          if (!context.TryFind(out QRCode qrcode, id))
             return Problems.NotFound<QRCode>(id);
 
-         QRCode copy = qrcode.CopyToNew();
-         context.LoadRequirements(copy);
+         context.LoadRequirements(qrcode);
+         int copyCount = context.QRCodes
+            .Where(qr => qr.Name.Substring(0, qr.Name.Length - _copySuffixLength).Equals(qrcode.Name))
+            .Count();
 
-         if (!QRCodeDetailDTO.TryCreate(qrcode, appConfig, out var details, out var problem))
+         string suffix = copyCount > 0 ? $"{_copySuffix} ({copyCount + 1})" : _copySuffix;
+         QRCode copy = qrcode.CopyToNew(suffix);
+
+         if (!QRCodeDetailDTO.TryCreate(copy, appConfig, out var details, out var problem))
             return Results.UnprocessableEntity(problem.Errors);
 
          context.Add(copy);
          context.SaveChanges();
+
+         details.Id = copy.Id;
 
          return Results.Ok(details);
       })

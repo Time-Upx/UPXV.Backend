@@ -13,7 +13,7 @@ public class QRCode : IHasRequirements
    public int Id { get; set; }
    public int IntentId { get; set; }
    public Intent? Intent { get; set; }
-   public string? Name { get; set; }
+   public required string Name { get; set; }
    public string? Description { get; set; }
    public DateTime CreatedAt { get; set; } = DateTime.Now;
    public DateTime? Expiration { get; set; }
@@ -24,11 +24,11 @@ public class QRCode : IHasRequirements
    public bool HasReachedUsageLimit => TimesUsed > UsageLimit;  
    public List<QRCodeArgument> Arguments { get; set; } = [];
 
-   public QRCode CopyToNew () => new QRCode()
+   public QRCode CopyToNew (string suffix) => new QRCode()
    {
       IntentId = IntentId,
       Intent = Intent,
-      Name = Name,
+      Name = Name + suffix,
       Description = Description,
       Expiration = Expiration is null ? null : DateTime.Now + (Expiration - CreatedAt),
       ActivationCode = ActivationCode,

@@ -13,8 +13,8 @@ public class GenerateQRCodeActivationCodeEndpoint : IEndpoint
       {
          length ??= _defaultLength;
 
-         if (length < 1 || length > _charsLength)
-            return Results.BadRequest($"Length must be between 1 and {_charsLength}.");
+         if (length < 1)
+            return Results.BadRequest($"Length must be at least 1.");
 
          char[] chars = new char[length.Value];
          for (int i = 0 ; i < length.Value ; i++)

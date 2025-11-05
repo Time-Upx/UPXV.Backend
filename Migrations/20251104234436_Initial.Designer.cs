@@ -12,7 +12,7 @@ using UPXV.Backend.Data;
 namespace UPXV.Backend.Migrations
 {
     [DbContext(typeof(UPXV_Context))]
-    [Migration("20251103235912_Initial")]
+    [Migration("20251104234436_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -200,6 +200,7 @@ namespace UPXV.Backend.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
                     b.Property<int>("TimesUsed")

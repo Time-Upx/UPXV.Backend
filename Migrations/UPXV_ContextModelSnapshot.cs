@@ -197,6 +197,7 @@ namespace UPXV.Backend.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("varchar(255)");
 
                     b.Property<int>("TimesUsed")
