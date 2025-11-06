@@ -19,6 +19,8 @@ public class UpdateConsumableEndpoint : IEndpoint
          if (!validator.TryValidate(dto, out ValidationResult result))
             return Problems.Validation(result.Errors);
 
+         context.LoadRequirements(consumable);
+
          ICollection<Tag>? tags = dto.TagIds is null ? null : context.Tags
             .Where(t => dto.TagIds.Contains(t.Id))
             .ToList();
@@ -28,7 +30,6 @@ public class UpdateConsumableEndpoint : IEndpoint
          context.Update(consumable);
          context.SaveChanges();
 
-         context.LoadRequirements(consumable);
          return Results.Ok(ConsumableDetailDTO.Of(consumable));
       })
       .WithDescription("Atualiza o Consumível com os valores novos")

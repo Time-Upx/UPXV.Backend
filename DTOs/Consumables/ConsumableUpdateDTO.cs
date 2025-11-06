@@ -15,6 +15,6 @@ public record ConsumableUpdateDTO
       if (Description is not null) consumable.Description = Description;
       if (Quantity is not null) consumable.Quantity = Quantity.Value;
       if (UnitId is not null) consumable.UnitId = UnitId.Value;
-      if (tags is not null) consumable.Tags = tags;
+      if (tags is not null) consumable.SetTags(tags);
    }
 }

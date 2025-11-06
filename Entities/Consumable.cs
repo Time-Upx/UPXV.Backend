@@ -13,6 +13,19 @@ public class Consumable : IHasRequirements, INamedEntity
    public int UnitId { get; set; }
    public Unit? Unit { get; set; }
 
+   public void SetTags (ICollection<Tag> tags)
+   {
+      var tagsToRemove = Tags
+            .Where(existingTag => !tags.Any(newTag => newTag.Id == existingTag.Id))
+            .ToList();
+
+      var tagsToAdd = tags
+          .Where(newTag => !Tags.Any(existingTag => existingTag.Id == newTag.Id))
+          .ToList();
+
+      foreach (var tag in tagsToRemove) Tags.Remove(tag);
+      foreach (var tag in tagsToAdd) Tags.Add(tag);
+   }
    public void LoadRequirements (DbContext context)
    {
       context.Load(this, c => c.Unit);

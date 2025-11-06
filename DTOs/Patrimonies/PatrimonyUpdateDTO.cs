@@ -4,7 +4,6 @@ namespace UPXV.Backend.DTOs.Patrimonies;
 
 public record PatrimonyUpdateDTO
 {
-   public required int Id { get; set; }
    public string? Name { get; set; }
    public string? Description { get; set; }
    public int[]? TagIds { get; set; }
@@ -15,6 +14,6 @@ public record PatrimonyUpdateDTO
       if (Name is not null) patrimony.Name = Name;
       if (Description is not null) patrimony.Description = Description;
       if (StatusId is not null) patrimony.StatusId = StatusId.Value;
-      if (tags is not null) patrimony.Tags = tags;
+      if (tags is not null) patrimony.SetTags(tags);
    }
 }

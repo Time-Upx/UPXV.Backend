@@ -19,16 +19,17 @@ public class UpdatePatrimonyEndpoint : IEndpoint
          if (!validator.TryValidate(dto, out ValidationResult result))
             return Problems.Validation(result.Errors);
 
+         context.LoadRequirements(patrimony);
+
          ICollection<Tag>? tags = dto.TagIds is null ? null : context.Tags
             .Where(t => dto.TagIds.Contains(t.Id))
             .ToList();
 
          dto.UpdateEntity(patrimony, tags);
 
-         context.Add(patrimony);
+         context.Update(patrimony);
          context.SaveChanges();
 
-         context.LoadRequirements(patrimony);
          return Results.Ok(PatrimonyDetailDTO.Of(patrimony));
       })
       .WithDescription("Atualiza o Patrimônio com os valores novos")
