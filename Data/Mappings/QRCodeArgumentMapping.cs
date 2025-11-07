@@ -12,6 +12,7 @@ public class QRCodeArgumentMapping : IEntityTypeConfiguration<QRCodeArgument>
 
       builder.HasOne(qa => qa.QRCode)
          .WithMany(qr => qr.Arguments)
-         .HasForeignKey(qa => qa.QRCodeId);
+         .HasForeignKey(qa => qa.QRCodeId)
+         .OnDelete(DeleteBehavior.Restrict);
    }
 }

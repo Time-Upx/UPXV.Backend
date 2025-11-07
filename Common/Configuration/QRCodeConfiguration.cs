@@ -7,6 +7,7 @@ public record QRCodeConfiguration
    public int DefaultHeight { get; set; }
    public int DefaultMargin { get; set; }
    public int DefaultQuality { get; set; }
+   public string? ExportFolder { get; set; }
 
    public static QRCodeConfiguration Create(IServiceProvider provider)
    {

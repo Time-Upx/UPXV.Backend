@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using UPXV.Backend.Data;
 
@@ -11,9 +12,11 @@ using UPXV.Backend.Data;
 namespace UPXV.Backend.Migrations
 {
     [DbContext(typeof(UPXV_Context))]
-    partial class UPXV_ContextModelSnapshot : ModelSnapshot
+    [Migration("20251107003114_ImprovedDeletionBehavior")]
+    partial class ImprovedDeletionBehavior
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

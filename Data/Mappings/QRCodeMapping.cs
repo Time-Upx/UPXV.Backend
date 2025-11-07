@@ -17,7 +17,13 @@ public class QRCodeMapping : IEntityTypeConfiguration<QRCode>
 
       builder.HasOne(qr => qr.Intent)
          .WithMany()
-         .HasForeignKey(qr => qr.IntentId);
+         .HasForeignKey(qr => qr.IntentId)
+         .OnDelete(DeleteBehavior.NoAction);
+
+      builder.HasMany(qr => qr.Arguments)
+         .WithOne(a => a.QRCode)
+         .HasForeignKey(a => a.QRCodeId)
+         .OnDelete(DeleteBehavior.Cascade);
 
       builder.Ignore(qr => qr.HasExpired);
       builder.Ignore(qr => qr.HasReachedUsageLimit);

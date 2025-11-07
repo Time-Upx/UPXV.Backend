@@ -12,10 +12,19 @@ public class PatrimonyMapping : IEntityTypeConfiguration<Patrimony>
       builder.HasIndex(p => p.Name).IsUnique();
 
       builder.HasMany(p => p.Tags)
-         .WithMany();
+         .WithMany()
+         .UsingEntity<Dictionary<string, object>>(
+            "PatrimoniesTags",
+            r => r.HasOne<Tag>().WithMany()
+                .HasForeignKey("TagId")
+                .OnDelete(DeleteBehavior.Restrict),
+            l => l.HasOne<Patrimony>().WithMany()
+                .HasForeignKey("ConsumableId")
+                .OnDelete(DeleteBehavior.Cascade));
 
       builder.HasOne(c => c.Status)
          .WithMany()
-         .HasForeignKey(c => c.StatusId);
+         .HasForeignKey(c => c.StatusId)
+         .OnDelete(DeleteBehavior.NoAction);
    }
 }

@@ -12,10 +12,19 @@ public class ConsumableMapping : IEntityTypeConfiguration<Consumable>
       builder.HasIndex(c => c.Name).IsUnique();
 
       builder.HasMany(c => c.Tags)
-         .WithMany();
+         .WithMany()
+         .UsingEntity<Dictionary<string, object>>(
+            "ConsumablesTags",
+            r => r.HasOne<Tag>().WithMany()
+                .HasForeignKey("TagId")
+                .OnDelete(DeleteBehavior.Restrict),
+            l => l.HasOne<Consumable>().WithMany()
+                .HasForeignKey("PatrimonyId")
+                .OnDelete(DeleteBehavior.Cascade));
 
       builder.HasOne(c => c.Unit)
          .WithMany()
-         .HasForeignKey(c => c.UnitId);
+         .HasForeignKey(c => c.UnitId)
+         .OnDelete(DeleteBehavior.NoAction);
    }
 }

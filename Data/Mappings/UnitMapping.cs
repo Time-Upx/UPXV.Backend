@@ -12,5 +12,10 @@ public class UnitMapping : IEntityTypeConfiguration<Unit>
 
       builder.HasIndex(u => u.Name).IsUnique();
       builder.HasIndex(u => u.Abbreviation).IsUnique();
+
+      builder.HasMany<Consumable>()
+         .WithOne(c => c.Unit)
+         .HasForeignKey(c => c.UnitId)
+         .OnDelete(DeleteBehavior.Restrict);
    }
 }

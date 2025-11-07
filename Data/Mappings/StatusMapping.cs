@@ -10,5 +10,10 @@ public class StatusMapping : IEntityTypeConfiguration<Status>
    {
       builder.HasKey(s => s.Id);
       builder.HasIndex(s => s.Name).IsUnique();
+
+      builder.HasMany<Patrimony>()
+         .WithOne(p => p.Status)
+         .HasForeignKey(p => p.StatusId)
+         .OnDelete(DeleteBehavior.Restrict);
    }
 }

@@ -14,8 +14,8 @@ public static class QRCodeSeeds
    ];
 
    public static int id = 0;
-   public static string didi => $"Exemplo {++id}";
-   public static string did => $"Exemplo {id}";
+   public static string didi => $"Exemplo{++id}";
+   public static string did => $"Exemplo{id}";
 
    public static int ca = 0;
    public static int cai => ++ca;
