@@ -6,10 +6,10 @@ public static class QRCodeSeeds
 {
    public static QRCode[] Data =>
    [
-      QRCode_CaixaRegistradora,
-      QRCode_SwitchStatusCaixaRegistradora,
-      QRCode_AddGranuladoColorido,
-      QRCode_TakeGranuladoColorido,
+      QRCode_CadeiraOdontologica,
+      QRCode_SwitchStatusCadeiraOdontologica,
+      QRCode_AddLuvas,
+      QRCode_TakeLuvas,
       QRCode_Tags
    ];
 
@@ -20,54 +20,54 @@ public static class QRCodeSeeds
    public static int ca = 0;
    public static int cai => ++ca;
 
-   public static readonly QRCode QRCode_CaixaRegistradora = new()
+   public static readonly QRCode QRCode_CadeiraOdontologica = new()
    {
       Id = didi,
       IntentId = IntentSeeds.PatrimonyDetail.Id,
-      Name = "Ver Caixa Registradora",
-      Description = "Detalhes da caixa registradora do balcão",
+      Name = "Ver Cadeira Odontológica",
+      Description = "Detalhes da cadeira principal do consultório",
       Arguments =
       [
-         new (cai, did, "id", PatrimonySeeds.CaixaRegistradora.Id)
+         new (cai, did, "id", PatrimonySeeds.CadeiraOdontologica.Id)
       ]
    };
 
-   public static readonly QRCode QRCode_SwitchStatusCaixaRegistradora = new()
+   public static readonly QRCode QRCode_SwitchStatusCadeiraOdontologica = new()
    {
       Id = didi,
       IntentId = IntentSeeds.PatrimonySwitchStatus.Id,
-      Name = "Status Caixa Registradora",
-      Description = "Altera o Status da Caixa Registradora para Em Manutenção",
+      Name = "Status Cadeira Odontológica",
+      Description = "Altera o Status da Cadeira Odontológica para Em Manutenção",
       Arguments =
       [
-         new(cai, did, "id", PatrimonySeeds.CaixaRegistradora.Id),
+         new(cai, did, "id", PatrimonySeeds.CadeiraOdontologica.Id),
          new(cai, did, "statusId", StatusSeeds.EmManutencao.Id),
       ]
    };
 
-   public static readonly QRCode QRCode_AddGranuladoColorido = new()
+   public static readonly QRCode QRCode_AddLuvas = new()
    {
       Id = didi,
       IntentId = IntentSeeds.ConsumableAdd.Id,
-      Name = "Adicionar Granulado Colorido",
-      Description = "Entrada de 5kg de Granulado Colorido",
+      Name = "Adicionar Luvas de Nitrilo",
+      Description = "Entrada de 10 caixas de Luvas de Nitrilo",
       Arguments =
       [
-        new(cai, did, "id", ConsumableSeeds.GranuladoColorido.Id),
-        new(cai, did, "amount", 50),
+        new(cai, did, "id", ConsumableSeeds.LuvasNitrilicas.Id),
+        new(cai, did, "amount", 10),
       ]
    };
 
-   public static readonly QRCode QRCode_TakeGranuladoColorido = new()
+   public static readonly QRCode QRCode_TakeLuvas = new()
    {
       Id = didi,
       IntentId = IntentSeeds.ConsumableTake.Id,
-      Name = "Retirar Granulado Colorido",
-      Description = "Retirada de 3kg para Produção",
+      Name = "Retirar Luvas de Nitrilo",
+      Description = "Retirada de 1 caixa para uso no Consultório 1",
       Arguments =
       [
-        new(cai, did, "id", ConsumableSeeds.GranuladoColorido.Id),
-        new(cai, did, "amount", 3),
+        new(cai, did, "id", ConsumableSeeds.LuvasNitrilicas.Id),
+        new(cai, did, "amount", 1),
       ]
    };
 
@@ -75,8 +75,8 @@ public static class QRCodeSeeds
    {
       Id = didi,
       IntentId = IntentSeeds.TagList.Id,
-      Name = "Detalhe Tag Vegano",
-      Description = "Página de Detalhamento da Tag 'Sabor Vegano' (Tag ID 50)",
+      Name = "Detalhe Tag Clínico",
+      Description = "Página de Detalhamento da Tag 'Clínico' (Tag ID 3)",
       Arguments = []
    };
 }

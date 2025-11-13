@@ -4,36 +4,36 @@ namespace UPXV.Backend.Data.Seeds;
 
 public static class TagSeeds
 {
-   public static Tag[] Data => [Laticinio, Cobertura, Refrigerado, Equipamento, Mobilia];
+   public static Tag[] Data => [Descartavel, Esterilizacao, Equipamento, Mobiliario, Clinico];
 
-   public static readonly Tag Laticinio = new()
+   public static readonly Tag Descartavel = new()
    {
       Id = 1,
-      Name = "Laticínio",
-      Description = "Contém leite ou produtos à base de leite."
+      Name = "Descartável",
+      Description = "Item de uso único (e.g., luvas, máscaras)."
    };
-   public static readonly Tag Cobertura = new()
+   public static readonly Tag Esterilizacao = new()
    {
       Id = 2,
-      Name = "Cobertura",
-      Description = "Usado como cobertura para sorvete."
+      Name = "Esterilização",
+      Description = "Item que requer esterilização após o uso ou está em ambiente estéril."
    };
-   public static readonly Tag Refrigerado = new()
+   public static readonly Tag Clinico = new()
    {
       Id = 3,
-      Name = "Refrigerado",
-      Description = "Requer armazenamento refrigerado."
+      Name = "Clínico",
+      Description = "Usado diretamente no tratamento do paciente (e.g., resinas, anestésicos)."
    };
    public static readonly Tag Equipamento = new()
    {
       Id = 4,
       Name = "Equipamento",
-      Description = "Ativos mecânicos ou elétricos da loja."
+      Description = "Ativos mecânicos, elétricos ou eletrônicos (e.g., Autoclave, Raio-X)."
    };
-   public static readonly Tag Mobilia = new()
+   public static readonly Tag Mobiliario = new()
    {
       Id = 5,
-      Name = "Mobília",
-      Description = "Mobília da loja, como mesas e cadeiras."
+      Name = "Mobiliário",
+      Description = "Móveis da clínica, como cadeiras de espera e armários."
    };
 }
