@@ -13,7 +13,7 @@ public record QRCodeDetailDTO
    public string? Name { get; set; }
    public string? Description { get; set; }
    public DateTime? Expiration { get; set; }
-   public string? Password { get; set; }
+   public string? ActivationCode { get; set; }
    public int? UsageLimit { get; set; }
    public int TimesUsed { get; set; }
    public IDictionary<string, string> Arguments { get; set; } = new Dictionary<string, string>();
@@ -28,7 +28,7 @@ public record QRCodeDetailDTO
          Name = qrcode.Name,
          Description = qrcode.Description,
          Expiration = qrcode.Expiration,
-         Password = qrcode.ActivationCode,
+         ActivationCode = qrcode.ActivationCode,
          UsageLimit = qrcode.UsageLimit,
          TimesUsed = qrcode.TimesUsed,
          Arguments = qrcode.Arguments.ToDictionary(),
@@ -51,7 +51,7 @@ public record QRCodeDetailDTO
          Name = qrcode.Name,
          Description = qrcode.Description,
          Expiration = qrcode.Expiration,
-         Password = qrcode.ActivationCode,
+         ActivationCode = qrcode.ActivationCode,
          UsageLimit = qrcode.UsageLimit,
          TimesUsed = qrcode.TimesUsed,
          Arguments = qrcode.Arguments.ToDictionary(),
